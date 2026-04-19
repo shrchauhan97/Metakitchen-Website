@@ -1,0 +1,50 @@
+.science-hero { min-height: 80vh; display: flex; align-items: flex-end; padding-top: 7rem; padding-bottom: var(--space-xl); background: var(--bg-dark); position: relative; overflow: hidden; }
+.science-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(45,80,22,0.5) 0%, transparent 60%); }
+.science-hero .container { position: relative; z-index: 1; }
+.science-hero__text { display: flex; flex-direction: column; gap: 1.75rem; max-width: 640px; }
+.science-hero__text h1 { color: var(--text-light); }
+.science-hero__text h1 em { font-style: italic; color: var(--color-gold-light); }
+.science-hero__text p { color: rgba(255,255,255,0.65); max-width: 480px; }
+
+.science-stats { padding: var(--space-xl) 0; }
+.science-stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(0,0,0,0.06); border-radius: var(--radius-lg); overflow: hidden; }
+.science-stat { background: var(--bg-primary); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background var(--duration-fast) ease; }
+.science-stat:hover { background: var(--bg-secondary); }
+.science-stat__num { font-size: clamp(2.5rem, 4vw, 4rem); color: var(--color-green); line-height: 1; }
+.science-stat__label { font-family: var(--font-body); font-size: 1rem; font-weight: 600; color: var(--text-primary); }
+.science-stat__sub { font-family: var(--font-body); font-size: 0.8125rem; color: var(--text-muted); line-height: 1.4; }
+
+.chart-section { padding: var(--space-xl) 0; background: var(--bg-secondary); }
+.chart-section__header { text-align: center; margin-bottom: var(--space-lg); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+.chart-section__header h2 em { font-style: italic; color: var(--color-green); }
+.chart-wrapper { background: var(--bg-card); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-md); border: 1px solid rgba(0,0,0,0.05); }
+.chart-svg { width: 100%; height: auto; }
+.chart-label { font-family: var(--font-mono); font-size: 11px; fill: var(--text-muted); }
+.chart-badge-label { font-family: var(--font-mono); font-size: 9px; fill: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; }
+.chart-badge-value { font-family: var(--font-mono); font-size: 13px; font-weight: 700; fill: white; }
+.chart-legend { display: flex; align-items: center; gap: 2rem; margin-top: 1.5rem; justify-content: center; }
+.chart-legend__item { display: flex; align-items: center; gap: 0.625rem; font-family: var(--font-body); font-size: 0.875rem; color: var(--text-secondary); }
+.chart-legend__line { width: 32px; height: 3px; border-radius: 2px; }
+.chart-legend__line--mk { background: var(--color-green); }
+.chart-legend__line--reg { background: #E8B4A0; }
+
+.sci-timeline { padding: var(--space-xl) 0; }
+.sci-timeline__header { margin-bottom: var(--space-lg); display: flex; flex-direction: column; gap: 1rem; }
+.sci-timeline__header h2 em { font-style: italic; color: var(--color-gold-dark); }
+.sci-timeline__items { display: flex; flex-direction: column; border-left: 2px solid var(--color-gold-light); margin-left: 2rem; padding-left: 2.5rem; }
+.sci-timeline__item { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid rgba(0,0,0,0.06); position: relative; }
+.sci-timeline__item::before { content: ''; position: absolute; left: -2.75rem; top: 2.25rem; width: 10px; height: 10px; border-radius: 50%; background: var(--color-gold); border: 2px solid var(--bg-primary); }
+.sci-timeline__year { font-size: 1rem; color: var(--color-gold-dark); padding-top: 0.25rem; }
+.sci-timeline__content { display: flex; flex-direction: column; gap: 0.5rem; }
+.sci-timeline__content h4 { font-family: var(--font-display); font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 500; }
+
+.science-cta { padding: var(--space-xl) 0; background: var(--bg-secondary); }
+.science-cta__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.science-cta__inner h2 em { font-style: italic; color: var(--color-green); }
+
+@media (max-width: 1024px) { .science-stats__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+  .science-stats__grid { grid-template-columns: 1fr; }
+  .sci-timeline__item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .science-cta__inner { flex-direction: column; align-items: flex-start; }
+}

@@ -1,0 +1,42 @@
+.waitlist__form { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.waitlist__categories { display: flex; flex-wrap: wrap; gap: 0.625rem; }
+
+.waitlist__chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500;
+  padding: 0.5rem 1rem; border-radius: var(--radius-full); border: 1.5px solid transparent; cursor: pointer;
+  transition: all var(--duration-fast) ease;
+}
+
+.waitlist--light .waitlist__chip { background: var(--bg-secondary); color: var(--text-secondary); }
+.waitlist--light .waitlist__chip:hover { border-color: var(--color-green); color: var(--color-green); }
+.waitlist--light .waitlist__chip--active { background: var(--color-green); color: white; border-color: var(--color-green); }
+
+.waitlist--dark .waitlist__chip { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.12); }
+.waitlist--dark .waitlist__chip:hover { border-color: var(--color-gold-light); color: var(--color-gold-light); }
+.waitlist--dark .waitlist__chip--active { background: var(--color-gold); color: var(--bg-dark); border-color: var(--color-gold); }
+
+.waitlist__fields { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.waitlist__input {
+  width: 100%; font-family: var(--font-body); font-size: 0.9375rem;
+  padding: 0.875rem 1.25rem; border-radius: var(--radius-md); outline: none;
+  transition: border-color var(--duration-fast) ease;
+}
+
+.waitlist--light .waitlist__input { background: var(--bg-card); color: var(--text-primary); border: 1.5px solid rgba(0,0,0,0.1); }
+.waitlist--light .waitlist__input::placeholder { color: var(--text-muted); }
+.waitlist--light .waitlist__input:focus { border-color: var(--color-green); }
+
+.waitlist--dark .waitlist__input { background: rgba(255,255,255,0.06); color: var(--text-light); border: 1.5px solid rgba(255,255,255,0.12); }
+.waitlist--dark .waitlist__input::placeholder { color: rgba(255,255,255,0.35); }
+.waitlist--dark .waitlist__input:focus { border-color: var(--color-gold); }
+
+.waitlist__success { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+.waitlist__check { width: 52px; height: 52px; border-radius: 50%; background: var(--color-green); display: flex; align-items: center; justify-content: center; color: white; margin-bottom: 0.5rem; }
+.waitlist--dark .waitlist__check { background: var(--color-gold); color: var(--bg-dark); }
+.waitlist__success h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 500; }
+.waitlist--dark .waitlist__success h3 { color: var(--text-light); }
+.waitlist__success p { font-size: 0.9375rem; }
+.waitlist--dark .waitlist__success p { color: rgba(255,255,255,0.55); }

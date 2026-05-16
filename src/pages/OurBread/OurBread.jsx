@@ -440,9 +440,10 @@ export default function OurBread() {
                 <path
                   ref={pathRegRef}
                   d="M60,232 C110,232 130,60 210,52 C290,44 330,88 380,124 C430,160 480,200 660,224"
-                  stroke="#C95F4A"
-                  strokeWidth="2.5"
+                  stroke="#5A6373"
+                  strokeWidth="2"
                   strokeLinecap="round"
+                  strokeDasharray="6 4"
                   fill="none"
                 />
                 <path

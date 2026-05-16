@@ -214,9 +214,10 @@ export default function Science() {
                 <path
                   ref={pathRegRef}
                   d="M60,232 C110,232 130,60 210,52 C290,44 330,88 380,124 C430,160 480,200 660,224"
-                  stroke="#C95F4A"
-                  strokeWidth="2.5"
+                  stroke="#5A6373"
+                  strokeWidth="2"
                   strokeLinecap="round"
+                  strokeDasharray="6 4"
                   fill="none"
                 />
                 <path
@@ -290,42 +291,53 @@ export default function Science() {
         <section className="science-citations">
           <div className="container">
             <div className="science-citations__inner reveal">
+              <span className="tag">FAQ</span>
               <h3>What the lab does, and what it means.</h3>
-              <dl className="science-citations__qa">
-                <dt>What is the glycemic index of MetaKitchen bread?</dt>
-                <dd>
-                  The Daily White, MetaKitchen's flagship loaf, is lab-tested at GI {PROOF.gi} —
-                  below the FSSAI low-GI threshold of 55. White bread sits at 70.
-                </dd>
+              <div className="science-faq">
+                <details className="science-faq__item">
+                  <summary>What is the glycemic index of MetaKitchen bread?</summary>
+                  <p>
+                    The Daily White, MetaKitchen's flagship loaf, is lab-tested at GI {PROOF.gi} —
+                    below the FSSAI low-GI threshold of 55. White bread sits at 70.
+                  </p>
+                </details>
 
-                <dt>How was the glycemic index measured?</dt>
-                <dd>
-                  The standard predictive Glycemic Index protocol at an accredited Indian lab,
-                  using the Goñi et al. regression — the methodology used by the FAO and food
-                  research bodies worldwide.
-                </dd>
+                <details className="science-faq__item">
+                  <summary>How was the glycemic index measured?</summary>
+                  <p>
+                    The standard predictive Glycemic Index protocol at an accredited Indian lab,
+                    using the Goñi et al. regression — the methodology used by the FAO and food
+                    research bodies worldwide.
+                  </p>
+                </details>
 
-                <dt>How does this compare to regular bread?</dt>
-                <dd>
-                  White bread sits around GI 70. Most "healthy multigrain" loaves on Indian shelves
-                  land between 55 and 70. Watermelon is 76. An apple is 36. Lentils are around 30.
-                  The Daily White came back at {PROOF.gi}.
-                </dd>
+                <details className="science-faq__item">
+                  <summary>How does this compare to regular bread?</summary>
+                  <p>
+                    White bread sits around GI 70. Most "healthy multigrain" loaves on Indian
+                    shelves land between 55 and 70. Watermelon is 76. An apple is 36. Lentils are
+                    around 30. The Daily White came back at {PROOF.gi}.
+                  </p>
+                </details>
 
-                <dt>Is this bread safe for diabetics?</dt>
-                <dd>
-                  It is bread that has been lab-tested for its glycemic index — useful for
-                  blood-sugar-aware eating, not a treatment. For diabetics on medication, your
-                  physician's guidance is what matters.
-                </dd>
+                <details className="science-faq__item">
+                  <summary>Is this bread safe for diabetics?</summary>
+                  <p>
+                    It is bread that has been lab-tested for its glycemic index — useful for
+                    blood-sugar-aware eating, not a treatment. For diabetics on medication, your
+                    physician's guidance is what matters.
+                  </p>
+                </details>
 
-                <dt>Where is MetaKitchen bread made?</dt>
-                <dd>
-                  Made in India, by chefs from the country's most senior kitchens. The line starts
-                  with the Daily White, with chia ciabatta, sourdough variants, and jalapeño
-                  cheese to follow.
-                </dd>
-              </dl>
+                <details className="science-faq__item">
+                  <summary>Where is MetaKitchen bread made?</summary>
+                  <p>
+                    Made in India, by chefs from the country's most senior kitchens. The line
+                    starts with the Daily White, with chia ciabatta, sourdough variants, and
+                    jalapeño cheese to follow.
+                  </p>
+                </details>
+              </div>
 
               <p className="science-citations__context">
                 India context: roughly 237M people with diabetes or pre-diabetes (ICMR-INDIAB,

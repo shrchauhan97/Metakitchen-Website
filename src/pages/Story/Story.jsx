@@ -86,7 +86,6 @@ export default function Story() {
                 alt="MetaKitchen multigrain bread on a real morning table"
                 loading="lazy"
               />
-              <figcaption>The breakfast we set out to fix</figcaption>
             </figure>
             <div className="story-why__text reveal reveal-delay-2">
               <span className="tag">The thesis</span>

@@ -900,3 +900,38 @@
   line-height: 1.6;
   color: var(--text-secondary);
 }
+
+/* Gallery video — unmute toggle pill */
+.aara-gallery__cell { position: relative; }
+.aara-gallery__mute-toggle {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px 7px 10px;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 999px;
+  background: rgba(26,24,20,0.55);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  color: rgba(255,255,255,0.92);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--duration-fast) ease, border-color var(--duration-fast) ease, transform var(--duration-fast) ease;
+  z-index: 2;
+}
+.aara-gallery__mute-toggle:hover {
+  background: rgba(26,24,20,0.78);
+  border-color: rgba(232,198,110,0.50);
+  transform: translateY(-1px);
+}
+.aara-gallery__mute-toggle:active { transform: translateY(0); }
+.aara-gallery__mute-toggle:focus-visible {
+  outline: 2px solid var(--wheat-gold, #E8C66E);
+  outline-offset: 2px;
+}

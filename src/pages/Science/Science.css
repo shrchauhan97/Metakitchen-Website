@@ -26,7 +26,7 @@
 .chart-legend__item { display: flex; align-items: center; gap: 0.625rem; font-family: var(--font-body); font-size: 0.875rem; color: var(--text-secondary); }
 .chart-legend__line { width: 32px; height: 3px; border-radius: 2px; }
 .chart-legend__line--mk { background: var(--hearth-ochre); }
-.chart-legend__line--reg { background: #C95F4A; }
+.chart-legend__line--reg { background: #5A6373; background-image: repeating-linear-gradient(90deg, #5A6373 0 6px, transparent 6px 10px); background-clip: padding-box; }
 
 /* science-hero__meta — citation meta strip under the lead paragraph */
 .science-hero__meta {
@@ -168,4 +168,44 @@
   font-size: 0.875rem;
   line-height: 1.55;
   color: var(--roasted-bran);
+}
+
+/* FAQ accordion — replaces flat <dl> with expandable items */
+.science-faq { display: flex; flex-direction: column; gap: 0; margin-top: 1.25rem; border-top: 1px solid rgba(26,24,20,0.10); }
+.science-faq__item { border-bottom: 1px solid rgba(26,24,20,0.10); padding: 0; transition: background var(--duration-fast) ease; }
+.science-faq__item[open] { background: rgba(194,112,42,0.04); }
+.science-faq__item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-display, var(--font-body));
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  position: relative;
+}
+.science-faq__item summary::-webkit-details-marker { display: none; }
+.science-faq__item summary::after {
+  content: '+';
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--hearth-ochre, #C2702A);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+.science-faq__item[open] summary::after { content: '\2212'; }
+.science-faq__item summary:hover { color: var(--hearth-ochre, #C2702A); }
+.science-faq__item p {
+  margin: 0 0 1.25rem 0;
+  padding-right: 2rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
 }

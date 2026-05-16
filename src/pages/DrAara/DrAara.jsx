@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mic, Brain, TrendingUp, ShieldCheck } from 'lucide-react'
+import { Mic, Brain, TrendingUp, ShieldCheck, Volume2, VolumeX } from 'lucide-react'
 import Button from '../../components/Button/Button.jsx'
 import CaptionLoop from '../../components/CaptionLoop/CaptionLoop.jsx'
 import AaraChatSim from '../../components/AaraChatSim/AaraChatSim.jsx'
@@ -8,6 +8,49 @@ import SeoHead from '../../components/SeoHead/SeoHead.jsx'
 import '../../components/AaraChatSim/AaraChatSim.css'
 import { AARA } from '../../data/content.js'
 import './DrAara.css'
+
+/**
+ * Gallery video with an unmute toggle. Auto-plays muted (browser policy
+ * requires muted for autoplay); clicking the pill toggles audio.
+ */
+function GalleryVideo({ src, caption }) {
+  const videoRef = useRef(null)
+  const [muted, setMuted] = useState(true)
+
+  function toggleMute() {
+    const next = !muted
+    setMuted(next)
+    if (videoRef.current) {
+      videoRef.current.muted = next
+      // If unmuting, kick playback so audio actually plays
+      if (!next) videoRef.current.play().catch(() => {})
+    }
+  }
+
+  return (
+    <>
+      <video
+        ref={videoRef}
+        src={src}
+        autoPlay
+        loop
+        muted={muted}
+        playsInline
+        preload="metadata"
+        aria-label={`Dr. Aara — ${caption}`}
+      />
+      <button
+        type="button"
+        className="aara-gallery__mute-toggle"
+        onClick={toggleMute}
+        aria-label={muted ? `Unmute "${caption}" video` : `Mute "${caption}" video`}
+      >
+        {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+        <span>{muted ? 'Unmute' : 'Mute'}</span>
+      </button>
+    </>
+  )
+}
 
 const FAQ_LD = {
   '@context': 'https://schema.org',
@@ -232,15 +275,7 @@ export default function DrAara() {
                   style={{ transitionDelay: `${i * 120}ms` }}
                 >
                   {p.type === 'video' ? (
-                    <video
-                      src={p.src}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="metadata"
-                      aria-label={`Dr. Aara — ${p.caption}`}
-                    />
+                    <GalleryVideo src={p.src} caption={p.caption} />
                   ) : (
                     <img src={p.src} alt={`Dr. Aara — ${p.caption}`} loading="lazy" />
                   )}

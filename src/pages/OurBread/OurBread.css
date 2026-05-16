@@ -223,7 +223,7 @@
 .chart-legend__item { display: flex; align-items: center; gap: 0.625rem; font-family: var(--font-body); font-size: 0.875rem; color: var(--text-secondary); }
 .chart-legend__line { width: 32px; height: 3px; border-radius: 2px; }
 .chart-legend__line--mk { background: var(--hearth-ochre); }
-.chart-legend__line--reg { background: #C95F4A; }
+.chart-legend__line--reg { background: #5A6373; background-image: repeating-linear-gradient(90deg, #5A6373 0 6px, transparent 6px 10px); background-clip: padding-box; }
 .chart-axis-unit { font-family: var(--font-mono); font-size: 10px; fill: var(--roasted-bran); letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* Brand story — paired with photography */

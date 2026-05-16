@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MetaKitchen — Fact Sheet for Website v2</title>
+</head>
+<body>
+
+<h1>MetaKitchen — Fact Sheet for Website v2</h1>
+
+<p><em>Synthesized from 3 parallel research agents across Notion Cortex, your audit-research/ folder, the MIRA source-of-truth docs, your codified voice principles (May 2 2026), the FARE Labs PDFs in your metakitchen project folder, and the Wikis vault. Every claim below is sourced. No copy yet. Read, flag anything wrong, answer the 9 questions at the end. Then I'll write v2.</em></p>
+
+<hr>
+
+<h2>0. The seven false claims on the live site (most urgent)</h2>
+
+<p>These are claims currently on metakitchen.io / the v3 staging site that don't match the sources. Three are factual (numbers/data), four are forward-looking framed as delivered. Some may be FSSAI/advertising-rule exposure, not just brand exposure.</p>
+
+<ol>
+  <li><strong>"GI 38"</strong> — not in any lab report on disk. FARE Labs (Gurugram, predictive in-vitro GI, samples picked 10 Feb 2026 at ITC Maurya): <strong>Ragi Ciabatta 50% Ragi + 50% Maida = pGI 68</strong> (Medium GI), <strong>Ragi Ciabatta 100% Ragi = pGI 59</strong> (Medium GI). Both fail FSSAI's &lt;55 Low GI threshold. Your own audit doc says: <em>"the only measured number sanctioned for public copy is 'Tested at GI 44' … site currently shows GI 38 … verify with Manisha before publishing either."</em></li>
+  <li><strong>"Peer-reviewed"</strong> — your audit doc: <em>"factually false. No peer-reviewed publication exists."</em></li>
+  <li><strong>"n=42"</strong> — your audit doc: <em>"placeholder. Notion never specifies 42."</em></li>
+  <li><strong>"Postprandial glucose response measured in real subjects following ingestion of 50g available carbohydrate"</strong> (content.js line 35) — false. FARE Labs ran an <strong>in-vitro</strong> hydrolysis-index test and applied the Goñi et al. regression to predict GI. No human subjects were dosed. No blood was drawn.</li>
+  <li><strong>"Clinically validated"</strong> — forward-looking, not delivered. FSSAI certification not started. No clinical (in-vivo) trial.</li>
+  <li><strong>"Pairs with continuous glucose monitors. Tracks your meal-by-meal response over weeks."</strong> — Dr. Aara's CGM integration is explicitly <strong>"do NOT touch"</strong> in the current sprints (Aara HL Sprint Design). It is roadmap. The current site claims it's a shipped capability.</li>
+  <li><strong>"Stone-ground multigrain — wheat, jowar, ragi, oats. Milled cool to preserve bran integrity."</strong> (content.js INGREDIENTS) — the recipes that have been lab-tested are Ragi Ciabatta in two formats (50/50 with maida; or 100% ragi). The multigrain wheat+jowar+ragi+oats line is not anchored to a tested recipe.</li>
+</ol>
+
+<p>Your own voice principle, locked 2 May 2026: <strong>"Claim what we are building. Never claim what we have measured."</strong> The live site does the reverse. v2 must respect this rule.</p>
+
+<hr>
+
+<h2>1. What MetaKitchen actually is</h2>
+
+<p><strong>Long name:</strong> Metabolic Kitchen. Brand mark: MetaKitchen.</p>
+
+<p><strong>It is not a bakery.</strong> Per your own canonical MK_Project_Memory.md entry 1: <em>"MK = Metabolic Kitchen. Building India's first clinically validated low-GI bread + AI health companion + data intelligence platform. Not a bakery — a 3-layer metabolic intelligence system."</em></p>
+
+<p><strong>Three layers:</strong></p>
+<ul>
+  <li><strong>Layer 1 — The Loaf.</strong> Low-GI bread (Ragi Ciabatta currently; final SKU not locked). Future SKUs: dosa batter, Thandai isabgol, gluten-free/keto variants. Bread is the wedge.</li>
+  <li><strong>Layer 2 — Dr. Aara.</strong> Consumer-facing AI avatar. Sales + companion + data absorber (not "clinical companion"). See Section 4.</li>
+  <li><strong>Layer 3 — SavantOS.</strong> Data flywheel / archetypes / agent pipelines. Your own line: <em>"the real moat is the data flywheel, not the bread."</em></li>
+</ul>
+
+<p><strong>Entity:</strong> MetaKitchen Pte. Ltd. (Singapore). Cap table <strong>EVAA 34% · Manisha Bhasin (via nominee Rishabh) 33% · Safdar Khan (via nominee Zara) 33%</strong>. EVAA is 100% Shaurya. So the 34% stake flows wholly to you. IP sits in EVAA and is licensed to MetaKitchen; royalty hits EVAA before the MK P&amp;L is split.</p>
+
+<p><strong>Team — the part the website should be honest about:</strong></p>
+<ul>
+  <li><strong>Ajeet Chauhan</strong> — CEO (30+ years payments/tech)</li>
+  <li><strong>Manisha Bhasin</strong> — CPO / Chief Product / Chef · <strong>Corporate Executive Chef, ITC Hotels</strong></li>
+  <li><strong>Safdar Khan</strong> — ED (scale &amp; fundraise)</li>
+  <li><strong>Shaurya Chauhan</strong> — Founder's Office, Product &amp; Tech</li>
+  <li><strong>Rishi Bhasin</strong> — Supply Chain &amp; Logistics Head</li>
+</ul>
+
+<p><strong>The currently-unnamed-chef on the live site is Manisha.</strong> Her ITC Hotels role is the biggest credibility lever you have, and the site doesn't use it.</p>
+
+<hr>
+
+<h2>2. The bread — current state of reality</h2>
+
+<ul>
+  <li><strong>Category:</strong> low-GI bread (target &lt;55 per FSSAI). <strong>NOT gluten-free.</strong> NOT keto. Just low-GI.</li>
+  <li><strong>Recipe formats tested by FARE Labs (Feb 2026):</strong> Ragi Ciabatta — 50% Ragi + 50% Maida (~145g format) and 100% Ragi (~148g format). Likely intermediate iterations, not necessarily launch SKU.</li>
+  <li><strong>Format claims used by the live site</strong> ("stone-ground multigrain, cultured ghee, no seed oils, 48-hour ferment"): flagged by your own audit as <em>"verify with Manisha."</em></li>
+  <li><strong>Pricing:</strong> not locked. ₹80–100/loaf in one doc, ₹120–190 in another.</li>
+  <li><strong>Manufacturing:</strong> asset-light / "Coca-Cola model" — licensed third-party kitchens, no capex.</li>
+  <li><strong>Shelf life, packaging, retail unit weight:</strong> not documented.</li>
+  <li><strong>Lab attribution:</strong> the FARE Labs reports we have on disk were <strong>issued to "ITC Hotels LTD — ITC Maurya"</strong>, not to MetaKitchen / EVAA. Manisha commissioned them under her ITC affiliation. If we cite these reports publicly, that attribution chain needs to be clean (or use a fresh test commissioned by MetaKitchen).</li>
+  <li><strong>Trademark for "MetaKitchen" not cleared</strong> — Timeout Hospitality Pvt Ltd has a conflicting registration. metakitchen.dotpe.in already exists.</li>
+</ul>
+
+<hr>
+
+<h2>3. Stage of the business</h2>
+
+<ul>
+  <li><strong>Stage:</strong> Pre-MVP / Gate 0. Target April 2026 retail launch slipped.</li>
+  <li><strong>Gate 1 (per your roadmap):</strong> taste parity + verified low GI + Aara capturing data. Not all cleared.</li>
+  <li><strong>FSSAI certification:</strong> not started.</li>
+  <li><strong>No retail launch has happened.</strong> No live consumer cohort. No paying customers.</li>
+  <li><strong>Distribution plan (not active):</strong> quick commerce (Blinkit / Zepto / Swiggy Instamart) + doctor channel + hotels/cafe B2B (Chaayos talks active but unconfirmed for naming) + QR direct.</li>
+  <li><strong>DNS:</strong> v3 site lives on Vercel at metakitchen.vercel.app. Cutover from old WordPress at metakitchen.io is pending.</li>
+</ul>
+
+<hr>
+
+<h2>4. Dr. Aara — the 99% I missed in v1</h2>
+
+<p><strong>What she is, in your sources:</strong> Dr. Aara is the consumer-facing avatar instantiation of <strong>MIRA</strong> — your proprietary Trust × Emotion × Logic (ELT) conversational-commerce engine. Not a clinical companion. Not a nutritionist. Not a chatbot.</p>
+
+<p>Your own framing from Mira_Core_Primitives_Spec_v0.1.md: <em>"Mira is not a chatbot with analytics bolted on. It is a <strong>persuasion engine with an intelligence exhaust</strong>."</em></p>
+
+<p><strong>What's actually shipped (Sprint A + B complete, Sprint C in progress):</strong></p>
+<ul>
+  <li>Core conversation flow on Gemini 2.5 Flash (two LLM calls per turn: score + respond)</li>
+  <li>Voice stack on Sarvam AI (Indian STT/TTS, Hindi/Hinglish Day 1)</li>
+  <li>Avatar on Simli Trinity-1 (3D Gaussian Splatting, &lt;300ms latency)</li>
+  <li>QR → PWA entry (no app download)</li>
+  <li>Trust Engine: 5-dimension Trust Temperature with repair protocols</li>
+  <li>Two-Mode Conversation (Quick + Deep turns)</li>
+  <li>Cross-session memory (Firestore)</li>
+  <li>Per-turn structured capture (taste, texture, digestion, energy, archetype tagging)</li>
+  <li>DPDPA-compliant consent gate, server-side keys</li>
+  <li>The "Priya" demo conversation: 8 turns, TT arc 15→82, scripted reference</li>
+</ul>
+
+<p><strong>What's designed but not shipped (vision / roadmap):</strong></p>
+<ul>
+  <li>Emotion Sensor (6 vectors: Protective Pride, Aspirational Belonging, Fear of Misjudgment, Familial Duty, Status Signaling, Regret Aversion) + Emotional Interference Detection</li>
+  <li>Archetype Engine with Household Decision Architecture (Initiator / Researcher / Influencer / Decider / Purchaser / User often being different people)</li>
+  <li>Feedback Compiler — triple-loop: makes next conversation smarter / B2B dashboards / Intelligence-as-a-Service product</li>
+  <li>Sensory Intelligence Engine v1.0 — "MBTI for Taste," 8 dimensions × 8 archetypes</li>
+  <li>Content Engine — generates WhatsApp forwards, ads, micro-content from real consumer language, recursively optimized</li>
+  <li>Cross-Vertical Pattern Detection — "Health Guardian-bread has 73% overlap with Protective Investor-microinsurance"</li>
+  <li>CGM integration — explicitly Phase 2+, "do NOT touch" in current sprints</li>
+</ul>
+
+<p><strong>The seven trademarkable moats</strong> (Platform Thesis v0.2): Conversion Genome™ · Somatic Proof Loop™ · Household Decision Graph™ · Trust Inheritance Protocol™ · Cultural Resonance Map™ · Whisper Network Intelligence™ · Emotional Replay™.</p>
+
+<p><strong>Channels:</strong> QR → PWA (P0, shipped) · WhatsApp (primary surface for bread vertical, not yet live) · Voice (Sarvam-powered) · Web chat · SMS · Telegram (plausible) · USSD (Africa microinsurance future) · Pre-rendered Reels (Aara as Reels persona) · Tavus CVI embed on EVAA site (unnamed).</p>
+
+<p><strong>Languages:</strong> English default, code-switches to consumer. Hindi/Hinglish Day 1 (not Phase 2). Tamil/Bengali/Gujarati/Telugu on roadmap (Sarvam supports). <em>"The magic is the mirroring, not the default."</em></p>
+
+<p><strong>Identity rules (locked in ELT Framework):</strong></p>
+<ul>
+  <li><strong>NOT a friend.</strong> "A reliable health assistant who earns the right to know you."</li>
+  <li><strong>NOT an AI doctor.</strong></li>
+  <li><strong>NOT a chronic-condition somatic tracker</strong> (that framing was retired — belongs to competitor Juno).</li>
+  <li><strong>Moderate anthropomorphism over high warmth.</strong></li>
+</ul>
+
+<p><strong>What v1 got wrong:</strong> I framed her as "a nutritionist on the back of the pack." Wrong by two orders of magnitude. She is the bread's relationship engine — the trust-temperature-tracking, emotion-vector-detecting, household-decision-mapping, sensory-archetype-clustering, cross-vertical-pattern-detecting front door to your data flywheel. The bread is the entry mechanic. She's the moat.</p>
+
+<hr>
+
+<h2>5. Brand voice — already codified, must honour</h2>
+
+<p><strong>Source of truth:</strong> EVAA LinkedIn Brand Voice Guide v2 (Notion 337183c8-5a45-8172-bef8-dae427daded3) · EVAA-WEBSITE-CLAUDE.md (this worktree) · evaa_voice_principle.md (locked 2 May 2026) · audit-research/aesthetic.md · audit-research/notion-content.md. MetaKitchen inherits EVAA's voice. There is no separate MetaKitchen voice doc.</p>
+
+<p><strong>Five voice adjectives:</strong> Precise · Understated · Curious · Grounded · Honest about edges.</p>
+
+<p><strong>North star principle (May 2 2026):</strong> <em>"Claim what we are building. Never claim what we have measured."</em></p>
+
+<p><strong>Tonal target:</strong> <em>"Function Health of bread. Clinically validated bread, photographed like Kinfolk, animated like Vision Pro, written like a New Yorker profile."</em> Reference grid: Function Health · AG1 · Ordr Health · Tartine · Poilâne · Mokobara · The Whole Truth · Apple Vision Pro · Don Molinico · Martin Auer.</p>
+
+<p><strong>Acceptable hedges:</strong> "we're studying", "we're building", "we hypothesize", "the bet is", "the thesis is", "first vertical", "we're exploring." <em>"When in doubt, soften."</em></p>
+
+<p><strong>Banned vocabulary (your codified blocklist):</strong></p>
+<ul>
+  <li><strong>Generic startup:</strong> revolutionary, cutting-edge, world-class, next-generation, leverage(s), synergy, ecosystem, stakeholders, best-in-class, solutions, services, partner with us, "we are excited", passionate, calibrated for X</li>
+  <li><strong>Generic wellness:</strong> wellness, journey, transform, "health journey", "transform your blood sugar"</li>
+  <li><strong>AI-slop sentence structures:</strong> "Not X, but Y" · "Not just X. Y." · Italic emphasis everywhere · Perfect parallel structure · Vague-to-inspirational arc · Emoji signposting</li>
+  <li><strong>Current-site copy explicitly flagged for removal:</strong> "Bread, prescribed." · "Bread that loves you back" · "This isn't Diet Bread. It's Just Better Bread." · "A chef's recipe that happens to be clinically sound" · "Million-dollar health advisor in your pocket" · "She gets sharper. So does your health." · "Making metabolic health effortless" · "Health Without Compromise"</li>
+</ul>
+
+<p><strong>Approved vocabulary:</strong> intelligence · architecture · framework · deploy · model · behavioral · proprietary · clinically validated (only when true) · low glycemic · fermentation · chef-led · evidence-based · habit anchor · staple upgrade.</p>
+
+<p><strong>Visual ban list (aesthetic.md):</strong> no ribbon banners · no smiling-brown-family stock · no stethoscope / DNA / caduceus / white coat · no wood-grain or rustic kraft texture · no chalkboard fonts · no emoji health badges (🍞 GI 38 ✅) · no comparison tables vs other breads · no 1990s Indian bakery cursive.</p>
+
+<p><strong>Already-derived on-brand headlines (from your audit doc — these are blessed candidates I should use as v2 anchors, not invent new ones):</strong></p>
+<ul>
+  <li>"The bread you already eat. Behaves differently."</li>
+  <li>"A daily staple, finally measured."</li>
+  <li>"A staple upgrade. Built like a chef would build it."</li>
+  <li>"One loaf. Built three times until it worked."</li>
+  <li>"What we left out matters as much as what's in."</li>
+</ul>
+
+<p><strong>Why "diabetic uncle" failed (and won't appear in v2):</strong> violates "Slightly intimidating — like you walked into a room of 50 engineers." Patronizing audience labels are off-tone. Also fails the New-Yorker-profile reference — that voice doesn't speak in cute consumer hooks.</p>
+
+<hr>
+
+<h2>6. Relationship to the rest of EVAA</h2>
+
+<ul>
+  <li><strong>EVAA</strong> is the holding company. Public-facing brand: research lab that deploys. <strong>Explicitly does NOT name MIRA / Dr. Aara / MetaKitchen / Open Ravi</strong> on its site. So MetaKitchen is the only consumer surface where Aara exists.</li>
+  <li><strong>MIRA</strong> is the engine. Dr. Aara is the bread vertical's instantiation. Other planned verticals reusing the same engine: lab diamond jewelry, rural microinsurance (Africa, USSD-capable), agricultural inputs. Optionality, not yet active.</li>
+  <li><strong>EverLife</strong> — a separate EVAA POC (MD-verified clinician replies). Parallel initiative, not Aara-integrated in current sources.</li>
+  <li><strong>Verita</strong> — pipeline JV being courted; clinical practice. Aara would be the growth+trust layer EVAA brings if the deal lands.</li>
+  <li><strong>Peptides / @peptidebutlerbot</strong> — separate Tim/Matt project, Telegram bot, unrelated to Aara.</li>
+</ul>
+
+<hr>
+
+<h2>7. The decisions I need from you before I write v2</h2>
+
+<ol>
+  <li><strong>The real GI number.</strong> The lab reports on disk show 59 (best) and 68 (worst). Your audit doc cites 44 as the sanctioned figure. The site shows 38. Which is the truth I'm allowed to publish? Is there a fresh lab test on a v4+ recipe I haven't found? <strong>Until you confirm this, v2 will not put a GI number on the site.</strong></li>
+  <li><strong>Manisha — can we name her and her ITC Hotels role?</strong> This is the single biggest credibility lift available. Yes / no / "yes but with X caveat."</li>
+  <li><strong>The current product SKU.</strong> Is the launch product Ragi Ciabatta (100% Ragi), the 50/50 version, or a different formulation entirely? Final ingredient list, weight, shelf life, pack format?</li>
+  <li><strong>Pricing.</strong> ₹80–100, ₹120–190, or unfixed and I shouldn't mention it?</li>
+  <li><strong>Aara framing.</strong> How public do you want to go on the MIRA / ELT / Trust Temperature / 6 primitives backstory on the MetaKitchen consumer site? Options on a spectrum:
+    <ul>
+      <li><strong>(a)</strong> Surface only the consumer experience ("scan, talk, she remembers"). Hide the engine entirely.</li>
+      <li><strong>(b)</strong> Show the engine as a "powered by" sub-section without naming MIRA.</li>
+      <li><strong>(c)</strong> Tease MIRA / the moat openly — investor-readable, signals depth to anyone curious enough to read.</li>
+    </ul>
+    My instinct: <strong>(b)</strong>. Consumer page reads as a relationship; one section at the bottom hints at the architecture for technical readers and investors. But this is your call.
+  </li>
+  <li><strong>"Dr." in Dr. Aara.</strong> Internal docs use "Dr." Your prior brief said she is not a doctor. Live site uses "Dr." The ELT Framework calls her a "reliable health assistant." Keep "Dr."? Drop it? Replace with something else?</li>
+  <li><strong>Geography to mention.</strong> Should the site say "first vertical: India" / "Singapore HQ, India build" / just "India" / nothing geographic? Diaspora extension (US, UK, SG, Gulf Indian) is on the roadmap.</li>
+  <li><strong>Launch state.</strong> The site currently implies an imminent product. Reality is Pre-MVP. Do we:
+    <ul>
+      <li><strong>(a)</strong> Soften to "we're building toward X" honest-edges voice.</li>
+      <li><strong>(b)</strong> Hold the "launching soon" frame and accept the gap.</li>
+      <li><strong>(c)</strong> Wait to relaunch the site until the product clears Gate 1.</li>
+    </ul>
+    My instinct: <strong>(a)</strong>. The voice principle demands it. The website becomes a thesis-in-public, not a sales page.
+  </li>
+  <li><strong>The audit-research folder.</strong> Should I treat <code>audit-research/MASTER_PLAN.md</code> as the binding plan for v2 — i.e. v2 = implementing that plan with current voice rules — or do you want v2 to be independent of it? I haven't read MASTER_PLAN.md yet; if it's binding, v2 follows it. If it's stale, I disregard it and work from the facts in this sheet.</li>
+</ol>
+
+<hr>
+
+<p><em>Once these 9 are answered (even partially), v2 can be drafted in 2–3 hours. I'll keep it factual under your "claim what we are building, not what we have measured" rule, leverage the on-brand headlines from your audit doc as anchors, and treat Aara as MIRA's first vertical instantiation rather than "a nutritionist on the back of the pack."</em></p>
+
+</body>
+</html>

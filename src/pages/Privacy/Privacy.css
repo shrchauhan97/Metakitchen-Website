@@ -1,0 +1,72 @@
+.legal-page {
+  min-height: 100vh;
+  padding: 9rem 2rem 6rem;
+  background: var(--crumb);
+  color: var(--pumpernickel);
+}
+
+.legal-page__inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.legal-page__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hearth-ochre);
+  margin-bottom: 1rem;
+}
+
+.legal-page__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5rem;
+  color: var(--pumpernickel);
+}
+
+.legal-page__updated {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--roasted-bran);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 3rem;
+}
+
+.legal-page section {
+  margin-bottom: 2.5rem;
+}
+
+.legal-page section h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  color: var(--pumpernickel);
+}
+
+.legal-page section p {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--roasted-bran);
+  margin: 0;
+}
+
+.legal-page section a {
+  color: var(--hearth-ochre);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.legal-page section a:hover {
+  color: var(--hearth-ochre-soft);
+}

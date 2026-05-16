@@ -1,0 +1,55 @@
+.glass-chip {
+  display: inline-flex;
+  position: relative;
+  z-index: 2;
+}
+
+.glass-chip--static {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(245, 239, 226, 0.7);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(26, 24, 20, 0.06);
+  box-shadow: var(--shadow-glass);
+  color: var(--pumpernickel);
+}
+
+.glass-chip__content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--pumpernickel);
+  white-space: nowrap;
+}
+
+.glass-chip__value {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  color: var(--hearth-ochre);
+  text-transform: uppercase;
+}
+
+.glass-chip__label {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--pumpernickel);
+  opacity: 0.85;
+}
+
+/* On dark backgrounds */
+.glass-chip--on-dark .glass-chip__content,
+.glass-chip--on-dark .glass-chip__label {
+  color: var(--crumb);
+}
+.glass-chip--on-dark .glass-chip__value {
+  color: var(--wheat-gold);
+}
+.glass-chip--on-dark.glass-chip--static {
+  background: rgba(26, 24, 20, 0.4);
+  border-color: rgba(245, 239, 226, 0.12);
+}

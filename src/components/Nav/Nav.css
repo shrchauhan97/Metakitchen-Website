@@ -22,15 +22,41 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  background: rgba(250, 250, 247, 0.86);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: var(--radius-full);
   padding: 0.375rem 0.375rem 0.375rem 1.125rem;
   box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.07),
-    0 1px 0 rgba(255,255,255,0.8) inset;
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.04),
+    0 14px 40px rgba(58, 74, 79, 0.14),
+    0 2px 8px rgba(58, 74, 79, 0.08);
+}
+
+/* When the nav sits over the dark slate Dr. Aara hero, the glass needs
+   a darker base so the white tint doesn't blow out the content behind. */
+.nav--on-dark .nav__inner {
+  background: rgba(20, 24, 27, 0.42);
+  border-color: rgba(245, 239, 226, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(245, 239, 226, 0.18),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2),
+    0 14px 40px rgba(0, 0, 0, 0.35);
+}
+.nav--on-dark .nav__link { color: rgba(245, 239, 226, 0.78); }
+.nav--on-dark .nav__link:hover,
+.nav--on-dark .nav__link--active {
+  color: var(--crumb);
+  background: rgba(245, 239, 226, 0.08);
+}
+.nav--on-dark .nav__cta {
+  background: var(--wheat-gold);
+  color: var(--slate-clinic-deep);
+}
+.nav--on-dark .nav__cta:hover {
+  background: #f1d693;
 }
 
 .nav__actions {

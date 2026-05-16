@@ -7,6 +7,175 @@
 .bread-hero__image { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1; background: var(--bg-secondary); box-shadow: var(--shadow-lg); }
 .bread-hero__image img { width: 100%; height: 100%; object-fit: cover; }
 
+/* Hero — Unsplash bread cross-section photo */
+.bread-hero__visual {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--linen);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(58, 74, 79, 0.08);
+}
+.bread-hero__image,
+.bread-hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.bread-hero__accent {
+  color: var(--hearth-ochre);
+  display: inline-block;
+}
+@media (max-width: 1024px) {
+  .bread-hero__visual { aspect-ratio: 16 / 11; }
+}
+
+/* GI feature section — animated counter alongside copy */
+.gi-feature {
+  padding: var(--space-xl) 0;
+  background: var(--linen);
+  position: relative;
+  overflow: hidden;
+}
+.gi-feature::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 50%, rgba(194, 112, 42, 0.10) 0%, transparent 55%);
+  pointer-events: none;
+}
+.gi-feature__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.gi-feature__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.gi-feature__copy h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.1;
+  color: var(--pumpernickel);
+  margin: 0;
+}
+.gi-feature__copy p {
+  max-width: 480px;
+  color: var(--roasted-bran);
+}
+.gi-feature__counter {
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 1024px) {
+  .gi-feature__inner { grid-template-columns: 1fr; gap: var(--space-lg); }
+}
+
+/* Ingredient icons */
+.ingredient__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: rgba(194, 112, 42, 0.10);
+  color: var(--hearth-ochre);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+/* Bread gallery — visual proof grid */
+.bread-gallery {
+  padding: var(--space-xl) 0;
+  background: var(--linen);
+}
+.bread-gallery__header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bread-gallery__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 220px 220px;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.bread-gallery__cell {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: 0;
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-sm);
+  min-height: 220px;
+  transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+}
+.bread-gallery__cell:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.bread-gallery__cell--lg {
+  grid-row: 1 / span 2;
+  min-height: 456px;
+}
+.bread-gallery__cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s var(--ease-out);
+}
+.bread-gallery__cell:hover img {
+  transform: scale(1.04);
+}
+.bread-gallery__cell figcaption {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--crumb);
+  background: rgba(26, 24, 20, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 900px) {
+  .bread-gallery__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 200px 200px;
+  }
+  .bread-gallery__cell { min-height: 200px; }
+  .bread-gallery__cell--lg { grid-column: span 2; grid-row: 1 / 2; min-height: 320px; }
+}
+@media (max-width: 540px) {
+  .bread-gallery__grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .bread-gallery__cell--lg { grid-column: 1; grid-row: auto; min-height: 280px; }
+}
+
 /* Attributes */
 .attributes { padding: var(--space-lg) 0; background: var(--bg-secondary); border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); }
 .attributes__grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
@@ -34,7 +203,9 @@
 .bread-science-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: var(--radius-lg); overflow: hidden; }
 .bread-science-stat { background: rgba(255,255,255,0.03); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background var(--duration-fast) ease; }
 .bread-science-stat:hover { background: rgba(255,255,255,0.06); }
-.bread-science-stat__num { font-size: clamp(2.5rem, 4vw, 4rem); color: var(--color-green-light); line-height: 1; }
+.bread-science-stat__num { font-size: clamp(2.5rem, 4vw, 4rem); color: var(--wheat-gold); line-height: 1; }
+.bread-science-stats__header p a { color: var(--wheat-gold); border-bottom: 1px solid currentColor; padding-bottom: 1px; transition: opacity var(--duration-fast) var(--ease-out); }
+.bread-science-stats__header p a:hover { opacity: 0.75; }
 .bread-science-stat__label { font-family: var(--font-body); font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.85); }
 .bread-science-stat__sub { font-family: var(--font-body); font-size: 0.8125rem; color: rgba(255,255,255,0.4); line-height: 1.4; }
 
@@ -51,15 +222,30 @@
 .chart-legend { display: flex; align-items: center; gap: 2rem; margin-top: 1.5rem; justify-content: center; }
 .chart-legend__item { display: flex; align-items: center; gap: 0.625rem; font-family: var(--font-body); font-size: 0.875rem; color: var(--text-secondary); }
 .chart-legend__line { width: 32px; height: 3px; border-radius: 2px; }
-.chart-legend__line--mk { background: var(--color-green); }
-.chart-legend__line--reg { background: #E8B4A0; }
+.chart-legend__line--mk { background: var(--hearth-ochre); }
+.chart-legend__line--reg { background: #C95F4A; }
+.chart-axis-unit { font-family: var(--font-mono); font-size: 10px; fill: var(--roasted-bran); letter-spacing: 0.08em; text-transform: uppercase; }
 
-/* Brand story */
-.bread-story { padding: var(--space-xl) 0; }
-.bread-story__inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: start; }
-.bread-story__headline h2 { line-height: 1.1; }
-.bread-story__headline h2 em { font-style: italic; color: var(--color-green); }
-.bread-story__body { display: flex; flex-direction: column; gap: 1.25rem; padding-top: 0.5rem; }
+/* Brand story — paired with photography */
+.bread-story { padding: var(--space-xl) 0; background: var(--linen); }
+.bread-story__inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: center; }
+.bread-story__media { margin: 0; position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); aspect-ratio: 4 / 5; }
+.bread-story__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bread-story__media figcaption { position: absolute; bottom: 1rem; left: 1rem; right: 1rem; padding: 0.6rem 0.875rem; background: rgba(26, 24, 20, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: var(--radius-md); color: var(--crumb); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.bread-story__text { display: flex; flex-direction: column; gap: 1.25rem; }
+.bread-story__text h2 { line-height: 1.1; color: var(--pumpernickel); }
+.bread-story__text p { color: var(--roasted-bran); }
+@media (max-width: 900px) {
+  .bread-story__inner { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .bread-story__media { aspect-ratio: 16 / 11; }
+}
+
+/* Ingredients banner image */
+.ingredients__banner { margin: 0 0 var(--space-lg); aspect-ratio: 21 / 6; overflow: hidden; }
+.ingredients__banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 768px) {
+  .ingredients__banner { aspect-ratio: 16 / 9; }
+}
 
 /* Values */
 .bread-values { padding: var(--space-xl) 0; background: var(--bg-secondary); }

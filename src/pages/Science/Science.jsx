@@ -3,134 +3,285 @@ import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Helmet } from 'react-helmet-async'
 import Button from '../../components/Button/Button.jsx'
+import { PROOF, SEO, BRAND } from '../../data/content.js'
 import './Science.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const facts = [
-  { stat: '38', label: 'Glycemic Index', sub: 'vs 70+ for regular white bread' },
-  { stat: '42%', label: 'Lower glucose spike', sub: 'vs standard wheat bread' },
-  { stat: '3x', label: 'More dietary fibre', sub: 'than average market bread' },
-  { stat: '0g', label: 'Added sugar', sub: 'naturally sweetened by ingredients' },
-]
-
 const timeline = [
-  { year: '2023', event: 'Recipe Development', desc: 'Award-winning chefs begin formulating the metabolic loaf.' },
-  { year: '2024', event: 'Clinical Trials', desc: 'Validated across 200+ subjects. GI confirmed at 38.' },
-  { year: '2025', event: 'Dr. Aara Integration', desc: 'AI companion trained on nutrition science and user data.' },
-  { year: '2026', event: 'First Batch', desc: "India's first clinically validated low-GI daily bread goes to market." },
+  { year: 'V1', event: 'First draft', desc: 'A chef-led loaf, stone-ground, slow-fermented. Pulled from the oven and tasted.' },
+  { year: 'V2', event: 'Refined', desc: 'Crumb tightened. Crust adjusted. Closer to a daily loaf, not yet there.' },
+  { year: 'V3', event: 'Fed to people', desc: 'Tested on the people who eat bread every morning. Notes came back. The recipe got cut down further.' },
+  { year: 'V4', event: 'Sent to the lab', desc: 'The one that did not taste like a compromise. The number came back at 38.' },
 ]
 
 export default function Science() {
   const chartRef = useRef(null)
   const pathMKRef = useRef(null)
   const pathRegRef = useRef(null)
+  const giDotRef = useRef(null)
+  const giLabelRef = useRef(null)
 
   useEffect(() => {
-    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }), { threshold: 0.15 })
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
+    const obs = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add('visible')
+        }),
+      { threshold: 0.15 },
+    )
+    document.querySelectorAll('.reveal').forEach((el) => obs.observe(el))
     return () => obs.disconnect()
   }, [])
 
-  useGSAP(() => {
-    if (!pathMKRef.current || !pathRegRef.current) return
-    const totalMK = pathMKRef.current.getTotalLength()
-    const totalReg = pathRegRef.current.getTotalLength()
-    gsap.set(pathMKRef.current, { strokeDasharray: totalMK, strokeDashoffset: totalMK })
-    gsap.set(pathRegRef.current, { strokeDasharray: totalReg, strokeDashoffset: totalReg })
-    const trigger = { trigger: chartRef.current, start: 'top 70%', once: true }
-    gsap.to(pathRegRef.current, { strokeDashoffset: 0, duration: 1.8, ease: 'power2.out', scrollTrigger: trigger })
-    gsap.to(pathMKRef.current, { strokeDashoffset: 0, duration: 1.8, delay: 0.3, ease: 'power2.out', scrollTrigger: trigger })
-  }, { scope: chartRef })
+  useGSAP(
+    () => {
+      if (!pathMKRef.current || !pathRegRef.current) return
+      const totalMK = pathMKRef.current.getTotalLength()
+      const totalReg = pathRegRef.current.getTotalLength()
+      gsap.set(pathMKRef.current, { strokeDasharray: totalMK, strokeDashoffset: totalMK })
+      gsap.set(pathRegRef.current, { strokeDasharray: totalReg, strokeDashoffset: totalReg })
+      if (giDotRef.current) gsap.set(giDotRef.current, { scale: 0, transformOrigin: 'center' })
+      if (giLabelRef.current) gsap.set(giLabelRef.current, { opacity: 0, y: -8 })
+
+      const trigger = { trigger: chartRef.current, start: 'top 70%', once: true }
+      const tl = gsap.timeline({ scrollTrigger: trigger })
+      tl.to(pathRegRef.current, { strokeDashoffset: 0, duration: 2.2, ease: 'power2.out' }, 0)
+        .to(pathMKRef.current, { strokeDashoffset: 0, duration: 2.2, ease: 'power2.out' }, 0.4)
+      if (giDotRef.current && giLabelRef.current) {
+        tl.to(giDotRef.current, { scale: 1, duration: 0.6, ease: 'back.out(2)' }, 1.6)
+          .to(giLabelRef.current, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 1.8)
+      }
+    },
+    { scope: chartRef },
+  )
 
   return (
-    <motion.div className="page-wrapper" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-
-      <section className="science-hero">
-        <div className="container">
-          <motion.div className="science-hero__text" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-            <span className="tag tag--light">The Science</span>
-            <h1>Not a claim.<br /><em>A proof.</em></h1>
-            <p>Every number on this page comes from independent clinical trials, not marketing copy. Here's what we know, and how we know it.</p>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="science-stats">
-        <div className="container">
-          <div className="science-stats__grid">
-            {facts.map((f, i) => (
-              <div key={f.label} className="science-stat reveal" style={{ transitionDelay: `${i * 100}ms` }}>
-                <div className="science-stat__num stat">{f.stat}</div>
-                <div className="science-stat__label">{f.label}</div>
-                <div className="science-stat__sub">{f.sub}</div>
+    <>
+      <Helmet>
+        <title>{SEO['/science'].title}</title>
+        <meta name="description" content={SEO['/science'].description} />
+      </Helmet>
+      <motion.div
+        className="page-wrapper"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <section className="science-hero">
+          <div className="container">
+            <motion.div
+              className="science-hero__text"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="tag tag--light">How we test</span>
+              <h1>One loaf. One lab. One number.</h1>
+              <p>
+                The Daily White was sent to an accredited Indian lab. The standard predictive
+                glycemic index protocol. The number came back at {PROOF.gi}.
+              </p>
+              <div className="science-hero__meta">
+                <span className="science-hero__meta-item">Predictive GI</span>
+                <span className="science-hero__meta-item">Accredited lab</span>
+                <span className="science-hero__meta-item">Goñi et al. regression</span>
               </div>
-            ))}
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="chart-section" ref={chartRef}>
-        <div className="container">
-          <div className="chart-section__header reveal">
-            <span className="tag tag--gold">Blood Glucose Response</span>
-            <h2>The curve<br /><em>says everything.</em></h2>
-            <p>Post-meal blood glucose measured over 2 hours. MetaKitchen vs regular wheat bread.</p>
-          </div>
-          <div className="chart-wrapper reveal reveal-delay-2">
-            <svg viewBox="0 0 700 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="chart-svg">
-              {[0,1,2,3,4].map(i => <line key={i} x1="60" y1={40 + i*48} x2="660" y2={40 + i*48} stroke="rgba(0,0,0,0.06)" strokeWidth="1" />)}
-              {['180','150','120','90','60'].map((v, i) => <text key={v} x="48" y={44 + i*48} textAnchor="end" className="chart-label">{v}</text>)}
-              {['0','30','60','90','120'].map((v, i) => <text key={v} x={60 + i*150} y="268" textAnchor="middle" className="chart-label">{v} min</text>)}
-              <path ref={pathRegRef} d="M60,232 C110,232 130,60 210,52 C290,44 330,88 380,124 C430,160 480,200 660,224" stroke="#E8B4A0" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-              <path ref={pathMKRef} d="M60,232 C110,232 140,148 200,136 C260,124 300,148 360,168 C420,188 500,208 660,224" stroke="#2D5016" strokeWidth="3" strokeLinecap="round" fill="none" />
-              <path d="M60,232 C110,232 140,148 200,136 C260,124 300,148 360,168 C420,188 500,208 660,224 L660,240 L60,240 Z" fill="url(#greenFill)" opacity="0.12" />
-              <defs>
-                <linearGradient id="greenFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#2D5016" />
-                  <stop offset="100%" stopColor="#2D5016" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <rect x="580" y="48" width="72" height="36" rx="8" fill="#2D5016" />
-              <text x="616" y="62" textAnchor="middle" className="chart-badge-label">GI</text>
-              <text x="616" y="76" textAnchor="middle" className="chart-badge-value">38</text>
-            </svg>
-            <div className="chart-legend">
-              <div className="chart-legend__item"><div className="chart-legend__line chart-legend__line--mk" /><span>MetaKitchen Loaf</span></div>
-              <div className="chart-legend__item"><div className="chart-legend__line chart-legend__line--reg" /><span>Regular Wheat Bread</span></div>
+        <section className="science-stats">
+          <div className="container">
+            <div className="science-stats__grid">
+              {PROOF.metrics.map((f, i) => (
+                <div
+                  key={f.label}
+                  className="science-stat reveal"
+                  style={{ transitionDelay: `${i * 100}ms` }}
+                >
+                  <div className="science-stat__num stat">{f.value}</div>
+                  <div className="science-stat__label">{f.label}</div>
+                  <div className="science-stat__sub">{f.sublabel}</div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="sci-timeline">
-        <div className="container">
-          <div className="sci-timeline__header reveal">
-            <span className="tag">Our Journey</span>
-            <h2>From kitchen<br /><em>to clinic.</em></h2>
-          </div>
-          <div className="sci-timeline__items">
-            {timeline.map((t, i) => (
-              <div key={t.year} className="sci-timeline__item reveal" style={{ transitionDelay: `${i * 100}ms` }}>
-                <div className="sci-timeline__year stat">{t.year}</div>
-                <div className="sci-timeline__content">
-                  <h4>{t.event}</h4>
-                  <p>{t.desc}</p>
+        <section className="chart-section" ref={chartRef}>
+          <div className="container">
+            <div className="chart-section__header reveal">
+              <span className="tag tag--gold">What the curve looks like</span>
+              <h2>Lower peak. Slower rise. Steadier finish.</h2>
+              <p>The orange line is the Daily White. The red line is regular white bread.</p>
+            </div>
+            <div className="chart-wrapper reveal reveal-delay-2">
+              <svg
+                viewBox="0 0 700 300"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="chart-svg"
+                role="img"
+                aria-labelledby="sci-chart-title sci-chart-desc"
+              >
+                <title id="sci-chart-title">Post-meal glucose response curves</title>
+                <desc id="sci-chart-desc">
+                  MetaKitchen produces a flatter glucose curve over 2 hours.
+                </desc>
+
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <line
+                    key={i}
+                    x1="60"
+                    y1={40 + i * 48}
+                    x2="660"
+                    y2={40 + i * 48}
+                    stroke="rgba(26, 24, 20, 0.06)"
+                    strokeWidth="1"
+                  />
+                ))}
+                {['180', '150', '120', '90', '60'].map((v, i) => (
+                  <text key={v} x="48" y={44 + i * 48} textAnchor="end" className="chart-label">
+                    {v}
+                  </text>
+                ))}
+                {['0', '30', '60', '90', '120'].map((v, i) => (
+                  <text key={v} x={60 + i * 150} y="268" textAnchor="middle" className="chart-label">
+                    {v} min
+                  </text>
+                ))}
+
+                <path
+                  ref={pathRegRef}
+                  d="M60,232 C110,232 130,60 210,52 C290,44 330,88 380,124 C430,160 480,200 660,224"
+                  stroke="#C95F4A"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                <path
+                  ref={pathMKRef}
+                  d="M60,232 C110,232 140,148 200,136 C260,124 300,148 360,168 C420,188 500,208 660,224"
+                  stroke="#C2702A"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                <path
+                  d="M60,232 C110,232 140,148 200,136 C260,124 300,148 360,168 C420,188 500,208 660,224 L660,240 L60,240 Z"
+                  fill="url(#ochreFillSci)"
+                  opacity="0.18"
+                />
+                <defs>
+                  <linearGradient id="ochreFillSci" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#C2702A" />
+                    <stop offset="100%" stopColor="#C2702A" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+
+                <g ref={giDotRef}>
+                  <circle cx="200" cy="136" r="6" fill="#C2702A" />
+                  <circle cx="200" cy="136" r="11" fill="none" stroke="#C2702A" strokeOpacity="0.35" strokeWidth="2" />
+                </g>
+                <g ref={giLabelRef}>
+                  <rect x="218" y="118" width="64" height="32" rx="6" fill="#1A1814" />
+                  <text x="250" y="130" textAnchor="middle" className="chart-badge-label">GI</text>
+                  <text x="250" y="144" textAnchor="middle" className="chart-badge-value">{PROOF.gi}</text>
+                </g>
+              </svg>
+              <div className="chart-legend">
+                <div className="chart-legend__item">
+                  <div className="chart-legend__line chart-legend__line--mk" />
+                  <span>MetaKitchen (low GI, {PROOF.gi})</span>
+                </div>
+                <div className="chart-legend__item">
+                  <div className="chart-legend__line chart-legend__line--reg" />
+                  <span>Regular wheat bread (high GI, ~{PROOF.giStandardWhiteBread})</span>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="science-cta">
-        <div className="container science-cta__inner reveal">
-          <h2>Convinced?<br /><em>Get on the list.</em></h2>
-          <Button to="/our-bread" variant="primary" size="lg">Join the Waitlist</Button>
-        </div>
-      </section>
+        <section className="sci-timeline">
+          <div className="container">
+            <div className="sci-timeline__header reveal">
+              <span className="tag">From the kitchen, then to the lab</span>
+              <h2>Four versions to get here.</h2>
+            </div>
+            <div className="sci-timeline__items">
+              {timeline.map((t, i) => (
+                <div
+                  key={t.year}
+                  className="sci-timeline__item reveal"
+                  style={{ transitionDelay: `${i * 100}ms` }}
+                >
+                  <div className="sci-timeline__year stat">{t.year}</div>
+                  <div className="sci-timeline__content">
+                    <h4>{t.event}</h4>
+                    <p>{t.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-    </motion.div>
+        <section className="science-citations">
+          <div className="container">
+            <div className="science-citations__inner reveal">
+              <h3>What the lab does, and what it means</h3>
+              <ol className="science-citations__list">
+                <li>
+                  <strong>The test.</strong> A predictive Glycemic Index test runs the food
+                  through a controlled laboratory model of digestion and measures how fast it
+                  releases glucose. The result is converted into a GI value via the Goñi et al.
+                  regression — a methodology used by the FAO and food research bodies worldwide.
+                </li>
+                <li>
+                  <strong>The scale.</strong> Foods below GI 55 are "low." Between 55 and 70 is
+                  "medium." Above 70 is "high." White bread sits around 70. Watermelon is 76. An
+                  apple is 36. Lentils are around 30. The Daily White came back at {PROOF.gi}.
+                </li>
+                <li>
+                  <strong>Honest about edges.</strong> This is bread that has been lab-tested for
+                  its glycemic index. Useful for blood-sugar-aware eating; not a treatment. For
+                  diabetics on medication, your physician's guidance is what matters.
+                </li>
+                <li>
+                  <strong>The rest of the line.</strong> Chia Ciabatta, sourdough variants,
+                  jalapeño cheese — and what follows bread — all go through the same protocol
+                  before they sit on a shelf.
+                </li>
+                <li>
+                  <strong>The context.</strong> India has roughly 237M people with diabetes or
+                  pre-diabetes (ICMR-INDIAB, Lancet 2023). 76.6% of diagnosed diabetics have poor
+                  glycemic control despite medication (TIGHT Study, BMJ 2019).
+                </li>
+              </ol>
+              <p className="science-citations__note">
+                Want the lab report? Email{' '}
+                <a href={`mailto:${BRAND.email}?subject=MetaKitchen%20Lab%20Report`}>
+                  {BRAND.email}
+                </a>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="science-cta">
+          <div className="container science-cta__inner reveal">
+            <h2>Convinced? Get on the list.</h2>
+            <Button to="/our-bread#waitlist" variant="primary" size="lg">
+              Get on the list
+            </Button>
+          </div>
+        </section>
+      </motion.div>
+    </>
   )
 }

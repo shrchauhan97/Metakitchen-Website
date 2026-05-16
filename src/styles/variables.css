@@ -1,47 +1,85 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap');
+/* ============================================================
+   MetaKitchen design tokens
+   "Function Health of bread" — hybrid warm-edible + cool-clinical
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --bg-primary: #FAFAF7;
-  --bg-secondary: #F4F1EA;
-  --bg-dark: #1C2B0E;
-  --bg-card: #FFFFFF;
+  /* ---------- Moonshot palette ---------- */
+  --crumb:          #F5EFE2;  /* page bg, stone-baked oat paper */
+  --linen:          #EBE3D0;  /* section bands, cards */
+  --pumpernickel:   #1A1814;  /* body + headings (never pure black) */
+  --roasted-bran:   #5C544A;  /* captions, microcopy */
+  --hearth-ochre:   #C2702A;  /* brand signature; logo, hero accent, CTA */
+  --hearth-ochre-soft: #D9914A;  /* lighter ochre, hover states */
+  --slate-clinic:   #3A4A4F;  /* Dr Aara sections, clinical foil */
+  --slate-clinic-deep: #232E32;  /* darker variant for max-contrast bands */
+  --wheat-gold:     #E8C66E;  /* GI-38 number, accent highlights */
+  --crumb-glass:    rgba(245, 239, 226, 0.4);  /* tint for liquid-glass overlay */
 
-  --color-gold: #C8A96E;
-  --color-gold-light: #E8D5A8;
-  --color-gold-dark: #A8893E;
-  --color-green: #2D5016;
-  --color-green-mid: #3D6B1F;
-  --color-green-light: #8BAF5A;
-  --color-teal: #7B9EA6;
-  --color-teal-light: #B2CDD3;
+  /* ---------- Back-compat aliases (so KJ's existing CSS keeps working) ---------- */
+  --bg-primary:       var(--crumb);
+  --bg-secondary:     var(--linen);
+  --bg-dark:          var(--slate-clinic);
+  --bg-card:          #FFFFFF;
 
-  --text-primary: #1A1A1A;
-  --text-secondary: #4A4A4A;
-  --text-muted: #8A8A8A;
-  --text-light: #FAFAF7;
+  --color-gold:        var(--wheat-gold);
+  --color-gold-light:  #F1D796;
+  --color-gold-dark:   #B89A4F;
+  --color-green:       var(--hearth-ochre);            /* old "green" = new ochre */
+  --color-green-mid:   var(--hearth-ochre-soft);
+  --color-green-light: #E0B888;
+  --color-teal:        var(--slate-clinic);
+  --color-teal-light:  #7A8B91;
 
-  --font-display: 'Cormorant', Georgia, serif;
-  --font-body: 'Satoshi', -apple-system, sans-serif;
-  --font-mono: 'Space Grotesk', monospace;
+  --text-primary:    var(--pumpernickel);
+  --text-secondary:  var(--roasted-bran);
+  --text-muted:      #8A857A;
+  --text-light:      var(--crumb);
 
+  /* ---------- Type system ---------- */
+  --font-display: 'Fraunces', 'Cormorant', Georgia, serif;
+  --font-body:    'Inter', 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Space Grotesk', ui-monospace, monospace;
+
+  /* ---------- Spacing & scale ---------- */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 2rem;
   --space-lg: 4rem;
   --space-xl: 8rem;
+  --space-2xl: 12rem;
 
-  --radius-sm: 4px;
-  --radius-md: 12px;
-  --radius-lg: 24px;
+  /* ---------- Radii ---------- */
+  --radius-sm:   4px;
+  --radius-md:   12px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
   --radius-full: 9999px;
 
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-  --shadow-md: 0 8px 32px rgba(0,0,0,0.08);
-  --shadow-lg: 0 24px 64px rgba(0,0,0,0.10);
+  /* ---------- Shadows ---------- */
+  --shadow-sm: 0 2px 8px rgba(26, 24, 20, 0.06);
+  --shadow-md: 0 8px 32px rgba(26, 24, 20, 0.08);
+  --shadow-lg: 0 24px 64px rgba(26, 24, 20, 0.10);
+  --shadow-glass: 0 8px 32px rgba(58, 74, 79, 0.12);
 
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* ---------- Motion ---------- */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --duration-fast: 200ms;
   --duration-base: 400ms;
   --duration-slow: 800ms;
+}
+
+/* Universal reduced-motion safeguard — covers framer-motion, GSAP, CSS @keyframes */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

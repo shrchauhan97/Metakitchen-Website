@@ -1,40 +1,78 @@
-.aara-hero { min-height: 100vh; display: flex; align-items: center; padding-top: 7rem; padding-bottom: var(--space-xl); background: var(--bg-dark); position: relative; overflow: hidden; }
-.aara-hero__bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(123,158,166,0.18) 0%, rgba(45,80,22,0.12) 40%, transparent 70%); pointer-events: none; }
-.aara-hero__inner { display: grid; grid-template-columns: 0.65fr 1.35fr; align-items: center; gap: var(--space-xl); position: relative; z-index: 1; }
+/* ============================================================
+   /dr-aara — cool clinical palette, KJ's video portrait restored
+   ============================================================ */
+.aara-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 0 var(--space-xl);
+  background: var(--slate-clinic-deep);
+  position: relative;
+  overflow: hidden;
+}
 
-.aara-hero__avatar { display: flex; align-items: center; justify-content: center; }
-
-.aara-avatar { position: relative; width: 340px; height: 440px; display: flex; align-items: center; justify-content: center; }
-
-.aara-avatar__ring {
+.aara-hero__bg {
   position: absolute;
-  border-radius: 50%;
-  animation: aaraRing 5s ease-in-out infinite;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 25% 40%, rgba(232, 198, 110, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 70%, rgba(194, 112, 42, 0.10) 0%, transparent 60%);
   pointer-events: none;
 }
+
+.aara-hero__inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: center;
+  gap: var(--space-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.aara-hero__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The video portrait with subtle pulsing rings */
+.aara-avatar {
+  position: relative;
+  width: 340px;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.aara-avatar__ring {
+  position: absolute;
+  border-radius: 40px;
+  pointer-events: none;
+  animation: aaraRing 5s ease-in-out infinite;
+}
 .aara-avatar__ring--1 {
-  width: 110%; height: 110%;
-  border: 1px solid rgba(123,158,166,0.12);
-  animation-delay: 0s;
-  border-radius: 50%;
+  width: 110%;
+  height: 110%;
+  border: 1px solid rgba(232, 198, 110, 0.14);
 }
 .aara-avatar__ring--2 {
-  width: 124%; height: 124%;
-  border: 1px solid rgba(123,158,166,0.07);
+  width: 124%;
+  height: 124%;
+  border: 1px solid rgba(232, 198, 110, 0.08);
   animation-delay: 0.8s;
-  border-radius: 50%;
 }
-@keyframes aaraRing { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.03); opacity: 1; } }
-
+@keyframes aaraRing {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
 .aara-avatar__glow {
   position: absolute;
   inset: -20px;
-  border-radius: 40px;
-  background: radial-gradient(ellipse at 50% 60%, rgba(123,158,166,0.28) 0%, transparent 70%);
+  border-radius: 50px;
+  background: radial-gradient(ellipse at 50% 60%, rgba(232, 198, 110, 0.20) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
-
 .aara-avatar__frame {
   position: relative;
   z-index: 1;
@@ -42,13 +80,12 @@
   height: 100%;
   border-radius: 36px;
   overflow: hidden;
-  border: 1px solid rgba(123,158,166,0.25);
+  border: 1px solid rgba(232, 198, 110, 0.25);
   box-shadow:
-    0 0 0 1px rgba(123,158,166,0.1),
-    0 32px 80px rgba(0,0,0,0.5),
-    0 0 60px rgba(123,158,166,0.15);
+    0 0 0 1px rgba(232, 198, 110, 0.1),
+    0 32px 80px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(232, 198, 110, 0.10);
 }
-
 .aara-avatar__video {
   width: 100%;
   height: 100%;
@@ -56,49 +93,773 @@
   object-position: center top;
   display: block;
 }
+.aara-avatar__badge {
+  position: absolute;
+  z-index: 3;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.5rem 0.875rem;
+  background: var(--wheat-gold);
+  color: var(--slate-clinic-deep);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
 
-.aara-hero__text { display: flex; flex-direction: column; gap: 1.75rem; }
-.aara-hero__text h1 { color: var(--text-light); }
-.aara-hero__text h1 em { font-style: italic; color: var(--color-teal-light); }
-.aara-hero__text p { color: rgba(255,255,255,0.65); }
+/* Tap-to-hear sound toggle, floats at the bottom-right of the video frame */
+.aara-avatar__sound {
+  position: absolute;
+  z-index: 4;
+  bottom: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.5rem 0.875rem;
+  background: rgba(20, 24, 27, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--crumb);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(232, 198, 110, 0.3);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background var(--duration-fast) ease, transform var(--duration-fast) ease, border-color var(--duration-fast) ease;
+}
+.aara-avatar__sound:hover {
+  transform: translateY(-2px);
+  border-color: var(--wheat-gold);
+  background: rgba(20, 24, 27, 0.88);
+}
+.aara-avatar__sound.is-audible {
+  background: var(--wheat-gold);
+  color: var(--slate-clinic-deep);
+  border-color: transparent;
+}
 
-.aara-features { padding: var(--space-xl) 0; }
-.aara-features__header { margin-bottom: var(--space-lg); display: flex; flex-direction: column; gap: 1rem; }
-.aara-features__header h2 em { font-style: italic; color: var(--color-teal); }
-.aara-features__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.aara-feature { background: var(--bg-card); border-radius: var(--radius-lg); padding: 2.5rem 2rem; border: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 1.25rem; transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out); }
-.aara-feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-.aara-feature__icon { width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(123,158,166,0.1); color: var(--color-teal); display: flex; align-items: center; justify-content: center; }
-.aara-feature h3 { font-family: var(--font-display); font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 500; }
+.aara-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
 
-.aara-access { padding: var(--space-xl) 0; background: var(--bg-secondary); }
-.aara-access__inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: center; }
-.aara-access__text { display: flex; flex-direction: column; gap: 1.5rem; }
-.aara-access__text h2 em { font-style: italic; color: var(--color-teal); }
-.aara-access__text p { max-width: 420px; }
-.aara-access__steps { display: flex; flex-direction: column; gap: 1rem; }
-.aara-access__step { display: flex; align-items: center; gap: 1rem; font-family: var(--font-body); font-size: 0.9375rem; font-weight: 500; }
-.aara-access__step-num { font-size: 1rem; color: var(--color-teal); min-width: 32px; }
+.aara-hero__disclosure {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wheat-gold);
+  background: rgba(232, 198, 110, 0.16);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(232, 198, 110, 0.36);
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  align-self: flex-start;
+  box-shadow:
+    inset 0 1px 0 rgba(245, 239, 226, 0.18),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.10),
+    0 6px 18px rgba(0, 0, 0, 0.25);
+}
 
-.aara-phone { background: var(--bg-dark); border-radius: 32px; padding: 1.5rem; max-width: 320px; margin: 0 auto; box-shadow: var(--shadow-lg); border: 1px solid rgba(255,255,255,0.08); }
-.aara-phone__screen { background: #111a10; border-radius: 20px; padding: 1.5rem; }
-.aara-phone__chat { display: flex; flex-direction: column; gap: 0.75rem; }
-.aara-chat__bubble { max-width: 85%; font-family: var(--font-body); font-size: 0.8125rem; line-height: 1.5; padding: 0.625rem 1rem; border-radius: 16px; }
-.aara-chat__bubble--aara { background: rgba(123,158,166,0.15); color: var(--color-teal-light); border-bottom-left-radius: 4px; align-self: flex-start; }
-.aara-chat__bubble--user { background: rgba(200,169,110,0.15); color: var(--color-gold-light); border-bottom-right-radius: 4px; align-self: flex-end; }
-.aara-phone__typing { display: flex; gap: 4px; align-items: center; padding: 0.5rem 0.75rem; }
-.aara-phone__typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--color-teal); opacity: 0.6; animation: typingDot 1.2s ease-in-out infinite; }
+.aara-hero__text h1 {
+  color: var(--crumb);
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
+  line-height: 1;
+  margin: 0;
+}
+
+.aara-hero__lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--wheat-gold);
+  margin: 0;
+}
+
+.aara-hero__text p {
+  color: rgba(245, 239, 226, 0.78);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  max-width: 540px;
+  margin: 0;
+}
+
+.aara-hero__small {
+  font-size: 0.8125rem !important;
+  line-height: 1.55 !important;
+  color: rgba(245, 239, 226, 0.45) !important;
+  border-left: 2px solid rgba(232, 198, 110, 0.3);
+  padding-left: 1rem;
+  max-width: 540px;
+}
+
+/* ============================================================
+   How she works
+   ============================================================ */
+.aara-features {
+  padding: var(--space-xl) 0;
+  background: var(--crumb);
+}
+.aara-features__header {
+  margin-bottom: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.aara-features__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.aara-feature {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(58, 74, 79, 0.08);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+.aara-feature:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.aara-feature__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(58, 74, 79, 0.08);
+  color: var(--slate-clinic);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.aara-feature h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  font-weight: 500;
+  margin: 0;
+}
+.aara-feature p {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--roasted-bran);
+  margin: 0;
+}
+
+/* ============================================================
+   Scan + animated chat
+   ============================================================ */
+.aara-access {
+  padding: var(--space-xl) 0;
+  background: var(--linen);
+}
+.aara-access__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+.aara-access__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.aara-access__text p {
+  max-width: 460px;
+  color: var(--roasted-bran);
+}
+.aara-access__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.aara-access__step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--pumpernickel);
+}
+.aara-access__step-num {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--slate-clinic);
+  min-width: 32px;
+}
+
+.aara-phone {
+  background: var(--slate-clinic-deep);
+  border-radius: 32px;
+  padding: 1.5rem;
+  max-width: 340px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(245, 239, 226, 0.08);
+}
+
+/* ============================================================
+   Aara portrait gallery — different moments of Aara
+   ============================================================ */
+.aara-gallery {
+  padding: var(--space-xl) 0;
+  background: var(--linen);
+}
+.aara-gallery__header {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.aara-gallery__strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.aara-gallery__cell {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: var(--shadow-md);
+  background: var(--bg-secondary);
+  transition: transform 0.6s var(--ease-out), box-shadow 0.6s var(--ease-out);
+}
+.aara-gallery__cell:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+.aara-gallery__cell img,
+.aara-gallery__cell video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s var(--ease-out);
+}
+.aara-gallery__cell:hover img,
+.aara-gallery__cell:hover video { transform: scale(1.04); }
+.aara-gallery__cell figcaption {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  padding: 0.5rem 0.875rem;
+  background: rgba(26, 24, 20, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--radius-md);
+  color: var(--crumb);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .aara-gallery__strip { grid-template-columns: 1fr; max-width: 360px; }
+}
+
+/* ============================================================
+   Video-call phone scaffold — what talking to Dr. Aara looks like
+   ============================================================ */
+.aara-call {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #1a1a1d 0%, #0d0d10 100%);
+  border-radius: 44px;
+  padding: 14px;
+  box-shadow:
+    0 0 0 1px rgba(245, 239, 226, 0.08),
+    0 32px 80px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(245, 239, 226, 0.05);
+}
+.aara-call__notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 24px;
+  background: #0a0a0c;
+  border-radius: 0 0 16px 16px;
+  z-index: 3;
+}
+.aara-call__screen {
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  background: var(--slate-clinic-deep);
+  display: flex;
+  flex-direction: column;
+  min-height: 540px;
+}
+.aara-call__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 36px 1rem 0.875rem;
+  border-bottom: 1px solid rgba(245, 239, 226, 0.06);
+  background: rgba(20, 24, 27, 0.92);
+  position: relative;
+  z-index: 2;
+}
+.aara-call__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.aara-call__name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--crumb);
+}
+.aara-call__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245, 239, 226, 0.55);
+}
+.aara-call__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+  animation: aara-call-pulse 2s ease-in-out infinite;
+}
+@keyframes aara-call-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.aara-call__time {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--wheat-gold);
+}
+
+.aara-call__video {
+  position: relative;
+  flex: 1;
+  min-height: 360px;
+  overflow: hidden;
+}
+.aara-call__video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.aara-call__pip {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  width: 72px;
+  height: 96px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(194, 112, 42, 0.4), rgba(232, 198, 110, 0.2));
+  border: 1px solid rgba(245, 239, 226, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 6px 8px;
+  color: var(--crumb);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* The CaptionLoop inside the call sits along the bottom of the video,
+   styled differently from the hero overlay. Override its absolute positioning. */
+.aara-call__video .caption-loop {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(20, 24, 27, 0.78);
+  padding: 0.65rem 0.85rem;
+}
+.aara-call__video .caption-loop__line {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.aara-call__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(20, 24, 27, 0.92);
+  border-top: 1px solid rgba(245, 239, 226, 0.06);
+}
+.aara-call__btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(245, 239, 226, 0.08);
+  border: 1px solid rgba(245, 239, 226, 0.1);
+  color: var(--crumb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+.aara-call__btn:hover {
+  background: rgba(245, 239, 226, 0.16);
+  transform: translateY(-2px);
+}
+.aara-call__btn--end {
+  background: #c2402a;
+  border-color: #c2402a;
+}
+.aara-call__btn--end:hover {
+  background: #d44b30;
+  transform: translateY(-2px) rotate(135deg);
+}
+.aara-call__btn:disabled { cursor: default; }
+
+@media (max-width: 540px) {
+  .aara-call { max-width: 300px; }
+  .aara-call__screen { min-height: 480px; }
+  .aara-call__video { min-height: 300px; }
+}
+
+/* ============================================================
+   iPhone-style realistic phone mockup with interactive chat sim
+   ============================================================ */
+.iphone {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  height: 620px;
+  margin: 0 auto;
+  background: linear-gradient(155deg, #2a2a2c 0%, #1c1c1e 40%, #0d0d0f 100%);
+  border-radius: 52px;
+  padding: 12px;
+  box-shadow:
+    inset 0 0 0 2px rgba(245, 239, 226, 0.06),
+    inset 0 0 0 6px #18181a,
+    0 32px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Side hardware buttons */
+.iphone__btn {
+  position: absolute;
+  background: linear-gradient(90deg, #1a1a1c, #2a2a2e, #1a1a1c);
+  border-radius: 2px;
+}
+.iphone__btn--silent { left: -2px; top: 110px; width: 4px; height: 32px; }
+.iphone__btn--vol-up { left: -2px; top: 160px; width: 4px; height: 56px; }
+.iphone__btn--vol-down { left: -2px; top: 230px; width: 4px; height: 56px; }
+.iphone__btn--power { right: -2px; top: 170px; width: 4px; height: 84px; }
+
+/* Screen */
+.iphone__screen {
+  position: relative;
+  height: 100%;
+  border-radius: 40px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--slate-clinic-deep) 0%, #1a1d20 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dynamic island */
+.iphone__island {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 96px;
+  height: 28px;
+  background: #050507;
+  border-radius: 16px;
+  z-index: 3;
+  box-shadow: inset 0 0 0 0.5px rgba(245, 239, 226, 0.04);
+}
+
+/* Status bar */
+.iphone__statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 26px 8px;
+  position: relative;
+  z-index: 2;
+}
+.iphone__time {
+  font-family: -apple-system, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--crumb);
+  letter-spacing: -0.02em;
+}
+.iphone__icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.iphone__bar,
+.iphone__wifi,
+.iphone__battery {
+  display: inline-block;
+  background: var(--crumb);
+}
+.iphone__bar { width: 16px; height: 9px; clip-path: polygon(0 60%, 25% 60%, 25% 40%, 50% 40%, 50% 20%, 75% 20%, 75% 0%, 100% 0%, 100% 100%, 0 100%); }
+.iphone__wifi { width: 14px; height: 10px; clip-path: polygon(50% 0%, 100% 50%, 75% 75%, 50% 50%, 25% 75%, 0% 50%); }
+.iphone__battery { width: 22px; height: 11px; border-radius: 3px; border: 1px solid var(--crumb); background: transparent; position: relative; }
+.iphone__battery::before {
+  content: '';
+  position: absolute;
+  inset: 1px 4px 1px 1px;
+  background: var(--crumb);
+  border-radius: 1px;
+}
+.iphone__battery::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 3px;
+  bottom: 3px;
+  width: 2px;
+  background: var(--crumb);
+  border-radius: 0 1px 1px 0;
+}
+
+/* Chat header */
+.iphone__chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(20, 24, 27, 0.95);
+  border-bottom: 1px solid rgba(245, 239, 226, 0.06);
+}
+.iphone__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1.5px solid rgba(232, 198, 110, 0.4);
+}
+.iphone__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.iphone__chat-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.iphone__chat-name {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--crumb);
+}
+.iphone__chat-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245, 239, 226, 0.55);
+}
+.iphone__online {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+  animation: aara-call-pulse 2s ease-in-out infinite;
+}
+
+/* Home indicator */
+.iphone__home-indicator {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 124px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--crumb);
+  opacity: 0.6;
+  z-index: 5;
+}
+
+@media (max-width: 540px) {
+  .iphone { max-width: 300px; height: 580px; }
+}
+.aara-phone__screen {
+  background: #14181B;
+  border-radius: 20px;
+  padding: 1.25rem 1rem;
+}
+.aara-phone__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(245, 239, 226, 0.06);
+  margin-bottom: 1rem;
+}
+.aara-phone__title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--crumb);
+}
+.aara-phone__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wheat-gold);
+}
+.aara-phone__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--wheat-gold);
+  animation: aara-phone-dot 2s ease-in-out infinite;
+}
+@keyframes aara-phone-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+.aara-phone__chat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  min-height: 240px;
+}
+.aara-chat__bubble {
+  max-width: 88%;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  padding: 0.625rem 0.875rem;
+  border-radius: 16px;
+}
+.aara-chat__bubble--aara {
+  background: rgba(232, 198, 110, 0.15);
+  color: var(--wheat-gold);
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+}
+.aara-chat__bubble--user {
+  background: rgba(245, 239, 226, 0.95);
+  color: var(--pumpernickel);
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+}
+.aara-phone__typing {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 0.625rem 0.75rem;
+  align-self: flex-start;
+}
+.aara-phone__typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--wheat-gold);
+  opacity: 0.7;
+  animation: typing-dot 1.2s ease-in-out infinite;
+}
 .aara-phone__typing span:nth-child(2) { animation-delay: 0.2s; }
 .aara-phone__typing span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes typingDot { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+@keyframes typing-dot {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-4px); opacity: 1; }
+}
 
-.aara-cta { padding: var(--space-xl) 0; }
-.aara-cta__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
-.aara-cta__inner h2 em { font-style: italic; color: var(--color-teal); }
-.aara-cta__inner p { max-width: 400px; text-align: center; }
+/* ============================================================
+   CTA
+   ============================================================ */
+.aara-cta {
+  padding: var(--space-xl) 0;
+  background: var(--crumb);
+}
+.aara-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+.aara-cta__inner p {
+  max-width: 440px;
+  text-align: center;
+}
 
 @media (max-width: 1024px) {
-  .aara-hero__inner, .aara-access__inner { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .aara-hero__inner,
+  .aara-access__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
   .aara-features__grid { grid-template-columns: 1fr; }
 }
-@media (max-width: 600px) { .aara-avatar { width: 260px; height: 340px; } }
+@media (max-width: 600px) {
+  .aara-hero { padding: 6rem 0 var(--space-lg); }
+  .aara-avatar { width: 260px; height: 340px; }
+}

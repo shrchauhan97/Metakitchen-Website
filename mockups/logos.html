@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MetaKitchen — Logo & Naming Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700;6..96,900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F1EAD9;
+    --cream-warm: #E8DEC4;
+    --paper: #EDE6D2;
+    --forest: #3C423A;
+    --forest-deep: #2A2E27;
+    --sage: #E2E5DF;
+    --terracotta: #D35350;
+    --mustard: #E8C547;
+    --ink: #1A1A17;
+    --ink-soft: #3D433B;
+    --ink-mute: #6E6E66;
+    --rule: rgba(60,66,58,0.18);
+    --font-display: 'Old Standard TT', 'Times New Roman', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-bodoni: 'Bodoni Moda', serif;
+    --font-grotesk: 'Space Grotesk', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--cream); color: var(--ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+  body {
+    background-image:
+      radial-gradient(rgba(60,66,58,0.04) 1px, transparent 1px),
+      radial-gradient(rgba(60,66,58,0.025) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+  }
+  .wrap { max-width: 1440px; margin: 0 auto; padding: 0 32px; }
+
+  header.top {
+    padding: 32px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  header.top h1 {
+    font-family: var(--font-display); font-weight: 700; font-size: 24px;
+    letter-spacing: -0.01em; text-transform: none; color: var(--ink);
+  }
+  header.top .breadcrumb a { color: var(--terracotta); text-decoration: underline; }
+
+  .intro {
+    padding: 64px 32px 48px;
+    max-width: 880px; margin: 0 auto; text-align: center;
+  }
+  .intro h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(40px, 5vw, 72px); line-height: 0.95; letter-spacing: -0.02em;
+    color: var(--forest); transform: scaleY(1.04);
+    margin-bottom: 20px;
+  }
+  .intro h2 em { font-style: italic; font-weight: 400; color: var(--terracotta); }
+  .intro p { font-family: var(--font-bodoni); font-size: 20px; line-height: 1.5; color: var(--ink-soft); max-width: 60ch; margin: 0 auto; }
+
+  .section-h {
+    text-align: center; padding: 64px 32px 32px;
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--ink-mute);
+  }
+  .section-h::before, .section-h::after { content: "·"; padding: 0 12px; }
+
+  /* ========== MARK GRID ========== */
+  .mark-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    max-width: 1440px; margin: 0 auto;
+    border-top: 1px solid var(--rule); border-left: 1px solid var(--rule);
+  }
+  .mark {
+    aspect-ratio: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 32px; gap: 16px;
+    border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    background: var(--cream);
+    position: relative;
+    transition: background 200ms ease;
+  }
+  .mark:hover { background: var(--paper); }
+  .mark--dark { background: var(--forest); color: var(--cream-warm); }
+  .mark--dark:hover { background: var(--forest-deep); }
+  .mark--terra { background: var(--terracotta); color: var(--cream-warm); }
+  .mark--mustard { background: var(--mustard); color: var(--ink); }
+  .mark--sage { background: var(--sage); }
+
+  .mark .glyph { width: 110px; height: 110px; display: grid; place-items: center; }
+  .mark .glyph svg { width: 100%; height: 100%; display:block; }
+  .mark .name {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 16px; letter-spacing: 0.04em; line-height: 1;
+    text-align: center;
+  }
+  .mark .name em { font-style: italic; font-weight: 400; }
+  .mark .meta {
+    position: absolute; top: 14px; left: 14px;
+    font-family: var(--font-grotesk); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .mark--dark .meta, .mark--terra .meta { color: rgba(232,222,196,0.7); }
+  .mark--mustard .meta { color: var(--ink-soft); }
+  .mark .desc {
+    position: absolute; bottom: 14px; left: 14px; right: 14px;
+    font-family: var(--font-grotesk); font-size: 10px; letter-spacing: 0.06em;
+    color: var(--ink-mute); text-align: center; line-height: 1.4;
+  }
+  .mark--dark .desc, .mark--terra .desc { color: rgba(232,222,196,0.7); }
+  .mark--mustard .desc { color: var(--ink-soft); }
+
+  /* ========== WORDMARK SECTION ========== */
+  .wordmark-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+    max-width: 1440px; margin: 0 auto;
+    border-top: 1px solid var(--rule); border-left: 1px solid var(--rule);
+  }
+  .wd-cell {
+    padding: 80px 48px;
+    border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    display: grid; place-items: center; min-height: 320px; position: relative;
+    background: var(--cream);
+  }
+  .wd-cell--dark { background: var(--forest); color: var(--cream-warm); }
+  .wd-cell--terra { background: var(--terracotta); color: var(--cream-warm); }
+  .wd-cell--mustard { background: var(--mustard); color: var(--ink); }
+  .wd-cell .meta {
+    position: absolute; top: 16px; left: 16px;
+    font-family: var(--font-grotesk); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .wd-cell--dark .meta, .wd-cell--terra .meta { color: rgba(232,222,196,0.7); }
+
+  /* WORDMARK STYLES */
+  .w1 { font-family: var(--font-display); font-weight: 700; font-size: 84px; letter-spacing: -0.03em; line-height: 0.85; transform: scaleY(1.1); text-align: center; }
+  .w1 em { font-style: italic; font-weight: 400; color: var(--terracotta); }
+
+  .w2 { font-family: var(--font-bodoni); font-weight: 900; font-variation-settings: 'opsz' 96; font-size: 96px; letter-spacing: -0.04em; line-height: 0.85; }
+
+  .w3 { font-family: var(--font-grotesk); font-weight: 500; font-size: 22px; letter-spacing: 0.36em; text-transform: uppercase; }
+  .w3 b { display:block; font-family: var(--font-display); font-weight: 700; font-size: 110px; letter-spacing: -0.04em; text-transform: uppercase; line-height: 0.85; transform: scaleY(1.1); margin-bottom: 12px; }
+
+  .w4 { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .w4 .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--terracotta); }
+  .w4 .word { font-family: var(--font-display); font-weight: 700; font-size: 80px; letter-spacing: -0.03em; line-height: 0.9; transform: scaleY(1.1); }
+
+  .w5 { font-family: var(--font-display); font-weight: 700; font-size: 86px; letter-spacing: -0.03em; line-height: 0.85; }
+  .w5 b { color: var(--terracotta); }
+  .w5 em { font-style: italic; font-weight: 400; }
+
+  .w6 { display: flex; align-items: baseline; gap: 24px; }
+  .w6 .left { font-family: var(--font-display); font-weight: 700; font-size: 110px; line-height: 0.85; letter-spacing: -0.04em; transform: scaleY(1.1); }
+  .w6 .right { font-family: var(--font-grotesk); font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; line-height: 1.6; max-width: 14ch; }
+
+  /* ========== NAMING SECTION ========== */
+  .naming { background: var(--paper); padding: 80px 32px 120px; border-top: 1px solid var(--rule); }
+  .naming h3 { text-align: center; font-family: var(--font-display); font-weight: 700; font-size: 48px; line-height: 1; color: var(--forest); margin-bottom: 12px; transform: scaleY(1.04); }
+  .naming h3 em { font-style: italic; font-weight: 400; color: var(--terracotta); }
+  .naming .lede { text-align: center; font-family: var(--font-bodoni); font-size: 18px; color: var(--ink-soft); max-width: 56ch; margin: 0 auto 64px; }
+  .name-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1280px; margin: 0 auto; }
+  .name-card {
+    background: var(--cream); padding: 36px 28px;
+    border: 1px solid var(--rule);
+    display: grid; gap: 16px;
+  }
+  .name-card .badge { font-family: var(--font-grotesk); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--terracotta); font-weight: 600; }
+  .name-card h4 { font-family: var(--font-display); font-weight: 700; font-size: 56px; letter-spacing: -0.02em; line-height: 0.9; color: var(--forest); transform: scaleY(1.06); }
+  .name-card h4 em { font-style: italic; font-weight: 400; }
+  .name-card .pron { font-family: var(--font-grotesk); font-size: 12px; color: var(--ink-mute); letter-spacing: 0.04em; }
+  .name-card p { font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+  .name-card .pros { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 8px; border-top: 1px dashed var(--rule); }
+  .name-card .pros span { font-family: var(--font-grotesk); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 8px; background: var(--sage); color: var(--ink-soft); }
+  .name-card .pros span.con { background: rgba(211,83,80,0.12); color: var(--terracotta); }
+
+  footer { padding: 32px; text-align: center; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-mute); border-top: 1px solid var(--rule); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>Logo & Naming Lab</h1>
+  <div class="breadcrumb">v1 mockup → <a href="/v1.html">back to layout</a></div>
+</header>
+
+<section class="intro">
+  <h2>Pick a <em>direction</em>, not a final logo.</h2>
+  <p>Twelve marks below — split across three families: <b>science/biotech</b>, <b>kitchen/craft</b>, and <b>editorial wordmark</b>. Each is a sketch in code, not a Figma mock. Tell me which family resonates and I'll push that one to v2 with refinement and licensed type.</p>
+</section>
+
+<!-- ============================================================
+     FAMILY 1 — SCIENCE / BIOTECH MARKS
+============================================================ -->
+<div class="section-h">Family 01 — Science / Biotech</div>
+<div class="mark-grid">
+
+  <!-- M1 — Wheat helix -->
+  <div class="mark">
+    <div class="meta">M01 · Wheat Helix</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#3C423A" stroke-width="2.5" stroke-linecap="round">
+          <path d="M30 10 Q70 30 30 50 Q70 70 30 90"/>
+          <path d="M70 10 Q30 30 70 50 Q30 70 70 90"/>
+          <line x1="35" y1="20" x2="65" y2="20"/>
+          <line x1="65" y1="35" x2="35" y2="35"/>
+          <line x1="35" y1="50" x2="65" y2="50"/>
+          <line x1="65" y1="65" x2="35" y2="65"/>
+          <line x1="35" y1="80" x2="65" y2="80"/>
+        </g>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">DNA helix · grain genome</div>
+  </div>
+
+  <!-- M2 — Atomic loaf -->
+  <div class="mark mark--dark">
+    <div class="meta">M02 · Atomic Loaf</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#E8DEC4" stroke-width="1.8">
+          <ellipse cx="50" cy="50" rx="42" ry="14"/>
+          <ellipse cx="50" cy="50" rx="42" ry="14" transform="rotate(60 50 50)"/>
+          <ellipse cx="50" cy="50" rx="42" ry="14" transform="rotate(-60 50 50)"/>
+        </g>
+        <circle cx="50" cy="50" r="7" fill="#E8C547"/>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">3 orbital rings · grain nucleus</div>
+  </div>
+
+  <!-- M3 — Cross-section / microscope -->
+  <div class="mark mark--terra">
+    <div class="meta">M03 · Cross-section</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="#E8DEC4" stroke-width="2"/>
+        <circle cx="50" cy="50" r="32" fill="none" stroke="#E8DEC4" stroke-width="1" opacity="0.6"/>
+        <g fill="#E8DEC4">
+          <circle cx="38" cy="42" r="2.5"/>
+          <circle cx="58" cy="38" r="3.5"/>
+          <circle cx="50" cy="55" r="2"/>
+          <circle cx="40" cy="62" r="3"/>
+          <circle cx="62" cy="60" r="2.5"/>
+          <circle cx="55" cy="48" r="1.5"/>
+        </g>
+        <line x1="50" y1="5" x2="50" y2="15" stroke="#E8DEC4" stroke-width="1.5"/>
+        <line x1="50" y1="85" x2="50" y2="95" stroke="#E8DEC4" stroke-width="1.5"/>
+        <line x1="5" y1="50" x2="15" y2="50" stroke="#E8DEC4" stroke-width="1.5"/>
+        <line x1="85" y1="50" x2="95" y2="50" stroke="#E8DEC4" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">microscope view · cell biology of bread</div>
+  </div>
+
+  <!-- M4 — M molecule -->
+  <div class="mark">
+    <div class="meta">M04 · M-molecule</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#3C423A" stroke-width="2.5">
+          <line x1="20" y1="80" x2="20" y2="30"/>
+          <line x1="20" y1="30" x2="50" y2="55"/>
+          <line x1="50" y1="55" x2="80" y2="30"/>
+          <line x1="80" y1="30" x2="80" y2="80"/>
+        </g>
+        <g fill="#D35350">
+          <circle cx="20" cy="80" r="6"/>
+          <circle cx="20" cy="30" r="6"/>
+          <circle cx="50" cy="55" r="6"/>
+          <circle cx="80" cy="30" r="6"/>
+          <circle cx="80" cy="80" r="6"/>
+        </g>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">letter M as bonded atoms</div>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     FAMILY 2 — KITCHEN / CRAFT MARKS
+============================================================ -->
+<div class="section-h">Family 02 — Kitchen / Craft</div>
+<div class="mark-grid">
+
+  <!-- M5 — Loaf seal -->
+  <div class="mark mark--mustard">
+    <div class="meta">M05 · Loaf seal</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="55" rx="38" ry="22" fill="#3C423A"/>
+        <g stroke="#1A1A17" stroke-width="2" fill="none" stroke-linecap="round">
+          <line x1="25" y1="48" x2="20" y2="42"/>
+          <line x1="40" y1="42" x2="35" y2="34"/>
+          <line x1="55" y1="40" x2="50" y2="32"/>
+          <line x1="70" y1="42" x2="65" y2="34"/>
+          <line x1="80" y1="48" x2="78" y2="42"/>
+        </g>
+        <circle cx="50" cy="55" r="46" fill="none" stroke="#1A1A17" stroke-width="1.5" stroke-dasharray="2 3"/>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">slashed loaf · bakers' seal</div>
+  </div>
+
+  <!-- M6 — Wheat compass -->
+  <div class="mark">
+    <div class="meta">M06 · Wheat compass</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#3C423A" stroke-width="2" fill="none" stroke-linecap="round">
+          <line x1="50" y1="15" x2="50" y2="85"/>
+          <path d="M50 30 Q40 32 38 25"/>
+          <path d="M50 30 Q60 32 62 25"/>
+          <path d="M50 45 Q38 47 36 38"/>
+          <path d="M50 45 Q62 47 64 38"/>
+          <path d="M50 60 Q36 62 34 50"/>
+          <path d="M50 60 Q64 62 66 50"/>
+          <path d="M50 75 Q34 77 32 64"/>
+          <path d="M50 75 Q66 77 68 64"/>
+        </g>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">hand-drawn wheat ear</div>
+  </div>
+
+  <!-- M7 — Knife & loaf -->
+  <div class="mark mark--sage">
+    <div class="meta">M07 · Slice</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="60" rx="34" ry="20" fill="none" stroke="#3C423A" stroke-width="2.5"/>
+        <line x1="20" y1="40" x2="80" y2="40" stroke="#D35350" stroke-width="3" stroke-linecap="round"/>
+        <line x1="80" y1="40" x2="86" y2="42" stroke="#D35350" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">knife above loaf · single slice</div>
+  </div>
+
+  <!-- M8 — Sun + grain -->
+  <div class="mark mark--dark">
+    <div class="meta">M08 · Hearth</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="20" fill="#E8C547"/>
+        <g stroke="#E8DEC4" stroke-width="2" stroke-linecap="round">
+          <line x1="50" y1="10" x2="50" y2="22"/>
+          <line x1="50" y1="78" x2="50" y2="90"/>
+          <line x1="10" y1="50" x2="22" y2="50"/>
+          <line x1="78" y1="50" x2="90" y2="50"/>
+          <line x1="22" y1="22" x2="30" y2="30"/>
+          <line x1="78" y1="78" x2="70" y2="70"/>
+          <line x1="78" y1="22" x2="70" y2="30"/>
+          <line x1="22" y1="78" x2="30" y2="70"/>
+        </g>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">oven sun · warmth + nourishment</div>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     FAMILY 3 — EDITORIAL MARKS (mark + wordmark fused)
+============================================================ -->
+<div class="section-h">Family 03 — Editorial · mark fused with wordmark</div>
+<div class="mark-grid">
+
+  <!-- M9 — M dot -->
+  <div class="mark">
+    <div class="meta">M09 · Era stamp</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="44" fill="none" stroke="#3C423A" stroke-width="1.5"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#3C423A" stroke-width="1"/>
+        <text x="50" y="62" font-family="Old Standard TT, serif" font-size="42" font-weight="700" text-anchor="middle" fill="#3C423A">M</text>
+        <text x="50" y="22" font-family="Inter, sans-serif" font-size="6.5" letter-spacing="2" text-anchor="middle" fill="#3C423A">EST · 2026</text>
+        <text x="50" y="86" font-family="Inter, sans-serif" font-size="6.5" letter-spacing="2" text-anchor="middle" fill="#3C423A">METAKITCHEN</text>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">vintage seal · ORDR-style stamp</div>
+  </div>
+
+  <!-- M10 — Index "№" -->
+  <div class="mark mark--terra">
+    <div class="meta">M10 · No. mark</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <text x="50" y="64" font-family="Old Standard TT, serif" font-style="italic" font-size="56" font-weight="700" text-anchor="middle" fill="#E8DEC4">№M</text>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">№M · catalog/issue mark</div>
+  </div>
+
+  <!-- M11 — Wordmark only, big M -->
+  <div class="mark mark--mustard">
+    <div class="meta">M11 · Solo M</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <text x="50" y="78" font-family="Bodoni Moda, serif" font-style="italic" font-size="98" font-weight="900" text-anchor="middle" fill="#1A1A17">M</text>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">single character · italic Bodoni</div>
+  </div>
+
+  <!-- M12 — Bullet trio -->
+  <div class="mark mark--dark">
+    <div class="meta">M12 · Three dots</div>
+    <div class="glyph">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="25" cy="50" r="8" fill="#D35350"/>
+        <circle cx="50" cy="50" r="8" fill="#E8C547"/>
+        <circle cx="75" cy="50" r="8" fill="#E8DEC4"/>
+        <line x1="33" y1="50" x2="42" y2="50" stroke="#E8DEC4" stroke-width="1.5"/>
+        <line x1="58" y1="50" x2="67" y2="50" stroke="#E8DEC4" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="name">METAKITCHEN</div>
+    <div class="desc">grain → kitchen → body</div>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     WORDMARK ONLY EXPLORATIONS
+============================================================ -->
+<div class="section-h">Wordmark · type-only directions</div>
+<div class="wordmark-grid">
+
+  <div class="wd-cell">
+    <div class="meta">W01 · Stretched serif, italic split</div>
+    <div class="w1">META<br><em>KITCHEN</em></div>
+  </div>
+
+  <div class="wd-cell wd-cell--dark">
+    <div class="meta">W02 · Single-word "META."</div>
+    <div class="w2" style="color:#E8C547;">META.</div>
+  </div>
+
+  <div class="wd-cell wd-cell--mustard">
+    <div class="meta">W03 · Caps + display "M"</div>
+    <div class="w3">METAKITCHEN<b>M</b></div>
+  </div>
+
+  <div class="wd-cell">
+    <div class="meta">W04 · Dot-tagged</div>
+    <div class="w4"><span class="dot"></span><div class="word">METAKITCHEN</div></div>
+  </div>
+
+  <div class="wd-cell wd-cell--terra">
+    <div class="meta">W05 · Italic split, terracotta</div>
+    <div class="w5" style="color:#E8DEC4;"><b>Meta</b><em>kitchen</em></div>
+  </div>
+
+  <div class="wd-cell">
+    <div class="meta">W06 · Big M + tagline</div>
+    <div class="w6"><div class="left">M.</div><div class="right">METAKITCHEN<br>EST 2026</div></div>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     NAMING ALTERNATIVES
+============================================================ -->
+<section class="naming">
+  <h3>Or change the <em>name</em>.</h3>
+  <p class="lede">If "MetaKitchen" is up for debate — here are six naming directions that lean harder into the science/techie energy you mentioned. Each is gut-checked for domain availability, pronunciation, and ownership of the space.</p>
+
+  <div class="name-grid">
+
+    <div class="name-card">
+      <div class="badge">Direction A · Drop "Kitchen"</div>
+      <h4>Meta<em>.</em></h4>
+      <div class="pron">/'me·tə/ · 4 letters</div>
+      <p>Lean into the techie short form. Bread is the first product, not the brand. Brand becomes a platform name — works as MetaKitchen grows into other staples.</p>
+      <div class="pros"><span>memorable</span><span>scalable</span><span class="con">.com taken (Facebook)</span></div>
+    </div>
+
+    <div class="name-card">
+      <div class="badge">Direction B · Compound</div>
+      <h4>Meta<em>grain</em></h4>
+      <div class="pron">/'me·tə·greɪn/ · 9 letters</div>
+      <p>Locks the category (grain/staples) into the name. Reads as biotech-adjacent without being clinical. Sounds like a research lab + a bakery had a child.</p>
+      <div class="pros"><span>category-defining</span><span>brandable</span></div>
+    </div>
+
+    <div class="name-card">
+      <div class="badge">Direction C · Sanskrit science</div>
+      <h4>Anna<em>.</em></h4>
+      <div class="pron">/'ə·nə/ · 4 letters</div>
+      <p>Sanskrit "अन्न" — food, grain, sustenance. Used in "Anna" of "Annapurna" (goddess of food). One word, deeply Indian, instantly understood, ships globally.</p>
+      <div class="pros"><span>indic root</span><span>short</span><span>poetic</span><span class="con">name conflicts</span></div>
+    </div>
+
+    <div class="name-card">
+      <div class="badge">Direction D · Lab + craft</div>
+      <h4>Khameer</h4>
+      <div class="pron">/khə·'meer/ · 7 letters</div>
+      <p>Hindi/Urdu for "yeast" — the alive ingredient that makes bread bread. Sounds ancient, reads modern. Memorable consonants. No competitor owns it in the wellness staple space.</p>
+      <div class="pros"><span>indic root</span><span>category fit</span><span>ownable</span></div>
+    </div>
+
+    <div class="name-card">
+      <div class="badge">Direction E · Math + body</div>
+      <h4>Index<em>.</em></h4>
+      <div class="pron">/'in·deks/ · 5 letters</div>
+      <p>From "Glycemic Index" — the metric you're solving. Doubles as the "index" of a magazine (editorial fit). Implies science without saying "science."</p>
+      <div class="pros"><span>conceptual</span><span>editorial</span><span class="con">generic</span></div>
+    </div>
+
+    <div class="name-card">
+      <div class="badge">Direction F · Keep MetaKitchen</div>
+      <h4>Meta<em>Kitchen</em></h4>
+      <div class="pron">/'me·tə·'ki·tʃən/ · 11 letters</div>
+      <p>Don't change the name. Already has signal across decks, domain (.io), entity registration. The redesign carries the meta-shift — the name doesn't have to.</p>
+      <div class="pros"><span>zero switching cost</span><span>domain owned</span><span>entity registered</span></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>© 2026 · MetaKitchen · Logo & Naming Lab v1</footer>
+
+</body>
+</html>

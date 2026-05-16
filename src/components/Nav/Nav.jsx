@@ -7,6 +7,8 @@ import './Nav.css'
 const links = [
   { label: 'Our Bread', to: '/our-bread' },
   { label: 'Dr. Aara', to: '/dr-aara' },
+  { label: 'Science', to: '/science' },
+  { label: 'Story', to: '/story' },
 ]
 
 export default function Nav() {
@@ -37,7 +39,7 @@ export default function Nav() {
       >
         <div className="nav__inner">
           <Link to="/" className="nav__logo">
-            <img src="https://metakitchen.io/wp-content/uploads/2026/02/ChatGPT-Image-Feb-19-2026-10_25_48-AM-e1771477345602.png" alt="MetaKitchen" />
+            <img src="/img/mk-logo-original.png" alt="MetaKitchen" />
           </Link>
 
           <ul className="nav__links">
@@ -51,8 +53,13 @@ export default function Nav() {
           </ul>
 
           <div className="nav__actions">
-            <Link to="/our-bread" className="nav__cta">Get Started</Link>
-            <button className="nav__burger" onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
+            <Link to="/our-bread#waitlist" className="nav__cta">Join waitlist</Link>
+            <button
+              className="nav__burger"
+              onClick={() => setMenuOpen((o) => !o)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+            >
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
@@ -75,7 +82,7 @@ export default function Nav() {
                 </motion.li>
               ))}
               <motion.li initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: links.length * 0.08 + 0.1 }}>
-                <Link to="/our-bread" className="nav__mobile-cta">Get Started</Link>
+                <Link to="/our-bread#waitlist" className="nav__mobile-cta">Join waitlist</Link>
               </motion.li>
             </ul>
           </motion.div>

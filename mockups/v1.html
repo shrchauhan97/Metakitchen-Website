@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MetaKitchen — Editorial Bakery Direction (v1 mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F1EAD9;
+    --cream-warm: #E8DEC4;
+    --paper: #EDE6D2;
+    --forest: #3C423A;
+    --forest-deep: #2A2E27;
+    --sage: #E2E5DF;
+    --terracotta: #D35350;
+    --mustard: #E8C547;
+    --ink: #1A1A17;
+    --ink-soft: #3D433B;
+    --ink-mute: #6E6E66;
+    --rule: rgba(60,66,58,0.18);
+
+    --font-display: 'Old Standard TT', 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-bodoni: 'Bodoni Moda', serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--cream); color: var(--ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+  body {
+    background-image:
+      radial-gradient(rgba(60,66,58,0.04) 1px, transparent 1px),
+      radial-gradient(rgba(60,66,58,0.025) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 1px;
+  }
+
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1440px; margin: 0 auto; padding: 0 32px; }
+
+  /* ==========================================================
+     NAV
+  ========================================================== */
+  nav.top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
+  }
+  nav.top .links { display: flex; gap: 32px; }
+  nav.top .wordmark { font-family: var(--font-display); font-size: 18px; letter-spacing: 0.04em; text-transform: none; font-weight: 700; }
+  nav.top .joinbtn {
+    border: 1px solid var(--ink); padding: 8px 18px; border-radius: 999px;
+    font-size: 11px; letter-spacing: 0.16em;
+  }
+
+  /* ==========================================================
+     HERO
+  ========================================================== */
+  .hero {
+    position: relative;
+    padding: 72px 32px 48px;
+    overflow: hidden;
+  }
+  .hero__eyebrow {
+    text-align: center;
+    font-size: 12px; letter-spacing: 0.34em; text-transform: uppercase;
+    color: var(--ink-soft); font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .hero__headline {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(64px, 13vw, 196px);
+    line-height: 0.86;
+    letter-spacing: -0.025em;
+    text-align: center;
+    color: var(--forest);
+    text-transform: uppercase;
+    transform: scaleY(1.04) scaleX(0.92);
+    transform-origin: center;
+  }
+  .hero__headline em { font-style: italic; font-weight: 400; }
+
+  .hero__sub-row {
+    display: flex; align-items: flex-start; justify-content: center;
+    gap: 32px; margin-top: 36px;
+    font-size: 14px; line-height: 1.55;
+  }
+  .hero__sub-row .col { max-width: 320px; }
+  .hero__sub-row .col p { color: var(--ink-soft); }
+  .hero__cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--forest); color: var(--cream-warm);
+    padding: 14px 28px; border-radius: 999px;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .hero__cta-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--ink); padding: 14px 8px;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .hero__photo {
+    margin-top: 48px;
+    position: relative;
+    border: 6px solid var(--terracotta);
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    background: #ddd;
+  }
+  .hero__photo img,
+  .hero__photo video { width: 100%; height: 100%; object-fit: cover; }
+  .tbd { color: var(--terracotta); font-style: italic; font-weight: 400; }
+  .hero__photo::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(60,66,58,0.45) 100%);
+    pointer-events: none;
+  }
+
+  .hero__stamp {
+    position: absolute; top: 48px; right: 48px;
+    width: 130px; height: 130px;
+    display: grid; place-items: center;
+    text-align: center;
+    border: 2px solid var(--ink); border-radius: 50%;
+    font-family: var(--font-display); font-size: 14px; line-height: 1.1;
+    letter-spacing: 0.08em;
+    background: var(--cream-warm);
+    transform: rotate(-8deg);
+    box-shadow: inset 0 0 0 4px var(--cream-warm), inset 0 0 0 5px var(--ink);
+  }
+  .hero__stamp .small { font-family: var(--font-body); font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-soft); display:block; margin-bottom: 4px; }
+  .hero__stamp .big { font-family: var(--font-display); font-size: 22px; font-weight: 700; display:block; }
+
+  /* ==========================================================
+     RUNNING META BAR
+  ========================================================== */
+  .meta-bar {
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .meta-bar div { padding: 22px 16px; border-right: 1px solid var(--rule); }
+  .meta-bar div:last-child { border-right: 0; }
+  .meta-bar strong {
+    display:block; font-family: var(--font-display);
+    font-size: 36px; font-weight: 700; color: var(--forest);
+    letter-spacing: -0.01em; text-transform: none;
+    margin-bottom: 4px;
+    transform: scaleY(1.05);
+  }
+
+  /* ==========================================================
+     EDITORIAL BLOCK (LE PAIN-INSPIRED)
+  ========================================================== */
+  .editorial {
+    padding: 120px 32px 80px;
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: 80px; align-items: center;
+    max-width: 1440px; margin: 0 auto;
+  }
+  .editorial__kicker {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--terracotta);
+    font-weight: 600; margin-bottom: 24px;
+  }
+  .editorial__h {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(40px, 5vw, 76px); line-height: 0.96; letter-spacing: -0.02em;
+    color: var(--forest);
+  }
+  .editorial__h em { font-style: italic; font-weight: 400; color: var(--terracotta); }
+  .editorial__lede {
+    font-family: var(--font-bodoni); font-size: 22px; line-height: 1.45;
+    color: var(--ink-soft); margin: 28px 0 24px;
+    max-width: 36ch;
+  }
+  .editorial__body { font-size: 14px; line-height: 1.65; color: var(--ink-soft); max-width: 38ch; }
+  .editorial__photo {
+    aspect-ratio: 4/5; overflow: hidden; background: #ccc;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.25);
+  }
+  .editorial__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ==========================================================
+     MARTIN AUER MOSAIC
+  ========================================================== */
+  .mosaic-section { padding: 80px 0 120px; }
+  .mosaic-section .head {
+    text-align: center; padding: 0 32px; margin-bottom: 48px;
+  }
+  .mosaic-section .head h3 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(36px, 4.5vw, 64px); line-height: 1; letter-spacing: -0.02em;
+    color: var(--forest); margin-bottom: 12px;
+  }
+  .mosaic-section .head h3 em { font-style: italic; font-weight: 400; }
+  .mosaic-section .head p { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); }
+
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 110px;
+    gap: 8px;
+    padding: 0 32px;
+    max-width: 1600px; margin: 0 auto;
+  }
+  .mosaic .tile { overflow: hidden; background: #ddd; position: relative; }
+  .mosaic .tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(.16,1,.3,1); }
+  .mosaic .tile:hover img { transform: scale(1.04); }
+  .mosaic .quote {
+    background: var(--mustard); display: grid; place-items: center; padding: 24px;
+    text-align: center;
+    font-family: var(--font-display); font-style: italic; font-size: 22px; line-height: 1.2;
+    color: var(--ink); letter-spacing: -0.01em;
+  }
+  .mosaic .quote span { display:block; font-family: var(--font-body); font-style: normal; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 12px; color: var(--ink-soft); }
+
+  .t1 { grid-column: span 2; grid-row: span 3; }
+  .t2 { grid-column: span 2; grid-row: span 2; }
+  .t3 { grid-column: span 2; grid-row: span 4; }
+  .t4 { grid-column: span 2; grid-row: span 2; }
+  .t5 { grid-column: span 2; grid-row: span 3; }
+  .t6 { grid-column: span 2; grid-row: span 2; }
+  .t7 { grid-column: span 2; grid-row: span 2; }
+  .t8 { grid-column: span 2; grid-row: span 3; }
+
+  /* ==========================================================
+     DARK FOREST BAND — AARA TEASER
+  ========================================================== */
+  .aara {
+    background: var(--forest);
+    color: var(--cream-warm);
+    padding: 120px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .aara::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(232,222,196,0.06) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+  }
+  .aara__inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; }
+  .aara__kicker { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--mustard); margin-bottom: 24px; }
+  .aara__h {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(48px, 6vw, 96px); line-height: 0.92; letter-spacing: -0.02em;
+    text-transform: uppercase;
+    transform: scaleY(1.05);
+  }
+  .aara__h em { font-style: italic; font-weight: 400; text-transform: none; color: var(--cream-warm); }
+  .aara__body { font-family: var(--font-bodoni); font-size: 20px; line-height: 1.5; color: rgba(232,222,196,0.85); margin: 32px 0; max-width: 40ch; }
+  .aara__cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--mustard); color: var(--forest-deep);
+    padding: 16px 28px; border-radius: 999px;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+  }
+  .aara__visual {
+    aspect-ratio: 1; border: 2px solid var(--cream-warm); border-radius: 50%;
+    display: grid; place-items: center; position: relative;
+    background: radial-gradient(circle at 30% 30%, rgba(232,222,196,0.12), transparent 60%);
+  }
+  .aara__visual::before, .aara__visual::after {
+    content: ""; position: absolute; inset: 0;
+    border: 1px solid rgba(232,222,196,0.3); border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  .aara__visual::after { animation-delay: 2s; }
+  .aara__core {
+    width: 60%; aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--mustard), var(--terracotta));
+    display: grid; place-items: center;
+    font-family: var(--font-display); font-size: 32px; color: var(--forest-deep);
+    box-shadow: inset 0 0 60px rgba(60,66,58,0.4);
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.08); opacity: 0.2; }
+  }
+
+  /* ==========================================================
+     COLLAGE — DON MOLINICO INSPIRED
+  ========================================================== */
+  .collage {
+    padding: 120px 32px;
+    position: relative;
+  }
+  .collage__head {
+    text-align: center; margin-bottom: 64px;
+  }
+  .collage__head h3 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(40px, 5vw, 72px); line-height: 0.95; letter-spacing: -0.02em;
+    color: var(--forest);
+  }
+  .collage__grid {
+    display: grid; grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 40px; max-width: 1300px; margin: 0 auto; align-items: end;
+  }
+  .swatch {
+    padding: 32px; aspect-ratio: 3/4; display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative; box-shadow: 0 24px 40px -16px rgba(0,0,0,0.2);
+  }
+  .swatch--cream { background: var(--cream-warm); }
+  .swatch--terra { background: var(--terracotta); color: var(--cream-warm); }
+  .swatch--mustard { background: var(--mustard); }
+  .swatch--mustard.tall { aspect-ratio: 3/4.4; }
+  .swatch__img { background: #c8a978; height: 100%; overflow: hidden; }
+  .swatch__img img { width: 100%; height: 100%; object-fit: cover; }
+  .swatch__cap { padding-top: 20px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .swatch__cap strong { display:block; font-family: var(--font-display); font-size: 28px; letter-spacing: 0; text-transform: none; font-weight: 700; margin-bottom: 4px; line-height: 1; }
+
+  /* ==========================================================
+     CLOSING — WAITLIST
+  ========================================================== */
+  .waitlist {
+    background: var(--forest-deep);
+    color: var(--cream-warm);
+    padding: 140px 32px;
+    text-align: center;
+  }
+  .waitlist h3 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(56px, 8vw, 128px); line-height: 0.9;
+    text-transform: uppercase; letter-spacing: -0.025em;
+    transform: scaleY(1.06);
+    margin-bottom: 32px;
+  }
+  .waitlist h3 em { font-style: italic; font-weight: 400; color: var(--mustard); }
+  .waitlist p { max-width: 36ch; margin: 0 auto 40px; font-family: var(--font-bodoni); font-size: 20px; line-height: 1.45; color: rgba(232,222,196,0.8); }
+  .waitlist form {
+    display: flex; max-width: 480px; margin: 0 auto;
+    border-bottom: 1px solid var(--cream-warm);
+  }
+  .waitlist input {
+    flex: 1; background: transparent; border: 0; outline: 0;
+    color: var(--cream-warm); font-family: var(--font-body); font-size: 16px;
+    padding: 16px 0;
+  }
+  .waitlist button {
+    background: transparent; border: 0; color: var(--cream-warm);
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  /* ==========================================================
+     FOOTER
+  ========================================================== */
+  footer.foot {
+    padding: 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-mute);
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ==========================================================
+     LOGO LAB — bottom of page for logo direction review
+  ========================================================== */
+  .lab {
+    background: var(--sage); padding: 80px 32px;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  }
+  .lab__h { text-align: center; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 48px; }
+  .lab__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
+  .lab__cell { background: var(--cream); padding: 48px 24px; text-align: center; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid var(--rule); }
+  .lab__cell .label { position: absolute; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-mute); margin-top: -120px; }
+  .lab__cell { position: relative; }
+
+  .logo-1 .wd { font-family: var(--font-display); font-weight: 700; font-size: 38px; line-height: 1; transform: scaleY(1.06); letter-spacing: -0.02em; color: var(--forest); text-transform: uppercase; }
+  .logo-1 .wd em { font-style: italic; font-weight: 400; }
+
+  .logo-2 { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .logo-2 .mono {
+    width: 64px; height: 64px; border: 2px solid var(--forest);
+    display: grid; place-items: center; border-radius: 50%;
+    font-family: var(--font-display); font-weight: 700; font-size: 26px; color: var(--forest);
+    box-shadow: inset 0 0 0 4px var(--cream), inset 0 0 0 5px var(--forest);
+  }
+  .logo-2 .wd { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--forest); }
+
+  .logo-3 .wd {
+    font-family: var(--font-display); font-weight: 700; font-size: 32px;
+    color: var(--forest); letter-spacing: -0.01em; line-height: 0.9;
+    transform: scaleY(1.08);
+  }
+  .logo-3 .sub { font-family: var(--font-body); font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--terracotta); margin-top: 8px; }
+
+  .logo-4 {
+    background: var(--terracotta); color: var(--cream-warm);
+    padding: 18px 32px; transform: rotate(-3deg);
+    font-family: var(--font-display); font-weight: 700; font-size: 28px;
+    letter-spacing: 0.02em; text-transform: uppercase;
+  }
+  .logo-4 .sub { display:block; font-family: var(--font-body); font-size: 9px; letter-spacing: 0.36em; margin-top: 4px; opacity: 0.8; }
+
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="links">
+    <a>The Bread</a>
+    <a>Dr. Aara</a>
+    <a>Science</a>
+    <a>Story</a>
+  </div>
+  <div class="wordmark">MetaKitchen</div>
+  <a class="joinbtn">Join Waitlist</a>
+</nav>
+
+<section class="hero">
+  <div class="hero__eyebrow">[ EYEBROW · TBD ]</div>
+  <h1 class="hero__headline"><span class="tbd">[ Hero<br>headline<br>TBD ]</span></h1>
+
+  <div class="hero__sub-row">
+    <div class="col">
+      <p class="tbd">[ Subhead — one sentence that says what MetaKitchen is. TBD. ]</p>
+    </div>
+    <a class="hero__cta">[ Primary CTA ]</a>
+    <div class="col">
+      <a class="hero__cta-ghost">[ Secondary CTA ]</a>
+    </div>
+  </div>
+
+  <div class="hero__photo">
+    <div class="hero__stamp">
+      <span class="small">[ Stamp ]</span>
+      <span class="big">TBD</span>
+      <span class="small">since 2026</span>
+    </div>
+    <video src="bread-hero.mp4" autoplay loop muted playsinline></video>
+  </div>
+</section>
+
+<section class="meta-bar">
+  <div><strong>—</strong>[ Stat 1 ]</div>
+  <div><strong>—</strong>[ Stat 2 ]</div>
+  <div><strong>—</strong>[ Stat 3 ]</div>
+  <div><strong>—</strong>[ Stat 4 ]</div>
+</section>
+
+<section class="editorial">
+  <div>
+    <div class="editorial__kicker">[ KICKER · TBD ]</div>
+    <h2 class="editorial__h"><span class="tbd">[ Editorial<br>section<br>headline ]</span></h2>
+    <p class="editorial__lede tbd">[ Pull-quote — italic, ~one sentence. ]</p>
+    <p class="editorial__body tbd">[ Body paragraph — ~3 sentences. ]</p>
+  </div>
+  <div class="editorial__photo">
+    <video src="bread-hero.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+  </div>
+</section>
+
+<section class="mosaic-section">
+  <div class="head">
+    <h3 class="tbd">[ Mosaic section<br>headline TBD ]</h3>
+    <p>[ kicker · tbd ]</p>
+  </div>
+  <div class="mosaic">
+    <div class="tile t1"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1000&q=80" alt=""></div>
+    <div class="tile t2"><img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=900&q=80" alt=""></div>
+    <div class="tile t3 quote">[ Pull-quote tile · TBD ]<span>[ attribution ]</span></div>
+    <div class="tile t4"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=900&q=80" alt=""></div>
+    <div class="tile t5"><img src="https://images.unsplash.com/photo-1568471173242-461f0a730452?w=1200&q=80" alt=""></div>
+    <div class="tile t6"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=900&q=80" alt=""></div>
+    <div class="tile t7"><img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=900&q=80" alt=""></div>
+    <div class="tile t8"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=900&q=80" alt=""></div>
+  </div>
+</section>
+
+<section class="aara">
+  <div class="aara__inner">
+    <div>
+      <div class="aara__kicker">[ KICKER · TBD ]</div>
+      <h2 class="aara__h"><span class="tbd">[ Companion<br>section<br>headline ]</span></h2>
+      <p class="aara__body tbd">[ Body — what is the AI companion / value prop. TBD. ]</p>
+      <a class="aara__cta">[ CTA ]</a>
+    </div>
+    <div class="aara__visual">
+      <div class="aara__core">A</div>
+    </div>
+  </div>
+</section>
+
+<section class="collage">
+  <div class="collage__head">
+    <h3 class="tbd">[ Product section TBD ]</h3>
+  </div>
+  <div class="collage__grid">
+    <div class="swatch swatch--cream">
+      <div class="swatch__img"><img src="https://images.unsplash.com/photo-1568471173242-461f0a730452?w=900&q=80" alt=""></div>
+      <div class="swatch__cap"><strong>[ Product 1 ]</strong>[ subline ]</div>
+    </div>
+    <div class="swatch swatch--terra tall">
+      <div class="swatch__img"><img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=900&q=80" alt=""></div>
+      <div class="swatch__cap"><strong>[ Product 2 ]</strong>[ subline ]</div>
+    </div>
+    <div class="swatch swatch--mustard">
+      <div class="swatch__img"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80" alt=""></div>
+      <div class="swatch__cap"><strong>[ Product 3 ]</strong>[ subline ]</div>
+    </div>
+  </div>
+</section>
+
+<section class="waitlist">
+  <h3><span class="tbd">[ Closing<br>headline ]</span></h3>
+  <p class="tbd">[ Closing copy — one sentence. TBD. ]</p>
+  <form>
+    <input placeholder="your@email.com">
+    <button>Join →</button>
+  </form>
+</section>
+
+<section class="lab">
+  <div class="lab__h">Logos moved → <a href="/logos.html" style="color:var(--terracotta);text-decoration:underline;">open logos.html</a></div>
+</section>
+
+<footer class="foot">
+  <div>© 2026 MetaKitchen · An EVAA company</div>
+  <div>Bengaluru · Mumbai · Delhi</div>
+</footer>
+
+</body>
+</html>

@@ -177,17 +177,18 @@
 .science-faq__item summary {
   list-style: none;
   cursor: pointer;
-  padding: 1.25rem 0;
+  padding: 1.85rem 1rem 1.85rem 0.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.5rem;
   font-family: var(--font-display, var(--font-body));
   font-size: 1.0625rem;
   font-weight: 600;
   color: var(--text-primary);
   position: relative;
 }
+.science-faq__item[open] summary { padding-bottom: 1.25rem; }
 .science-faq__item summary::-webkit-details-marker { display: none; }
 .science-faq__item summary::after {
   content: '+';
@@ -202,10 +203,10 @@
 .science-faq__item[open] summary::after { content: '\2212'; }
 .science-faq__item summary:hover { color: var(--hearth-ochre, #C2702A); }
 .science-faq__item p {
-  margin: 0 0 1.25rem 0;
-  padding-right: 2rem;
+  margin: 0 0 1.75rem 0;
+  padding: 0 2rem 0 0.25rem;
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--text-secondary);
 }

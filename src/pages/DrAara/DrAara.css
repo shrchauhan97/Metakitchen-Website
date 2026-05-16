@@ -935,3 +935,44 @@
   outline: 2px solid var(--wheat-gold, #E8C66E);
   outline-offset: 2px;
 }
+
+/* FAQ accordion — same pattern as /science FAQ, more breathing room */
+.aara-faq__accordion { display: flex; flex-direction: column; gap: 0; margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.10); }
+.aara-faq__item { border-bottom: 1px solid rgba(255,255,255,0.10); padding: 0; transition: background var(--duration-fast) ease; }
+.aara-faq__item[open] { background: rgba(232,198,110,0.05); }
+.aara-faq__item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.85rem 1rem 1.85rem 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  font-family: var(--font-display, var(--font-body));
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.92);
+  position: relative;
+}
+.aara-faq__item[open] summary { padding-bottom: 1.25rem; }
+.aara-faq__item summary::-webkit-details-marker { display: none; }
+.aara-faq__item summary::after {
+  content: '+';
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--wheat-gold, #E8C66E);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+.aara-faq__item[open] summary::after { content: '\2212'; }
+.aara-faq__item summary:hover { color: var(--wheat-gold, #E8C66E); }
+.aara-faq__item p {
+  margin: 0 0 1.75rem 0;
+  padding: 0 2rem 0 0.25rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.68);
+}

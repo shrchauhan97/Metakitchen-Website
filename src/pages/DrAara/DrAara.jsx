@@ -392,33 +392,41 @@ export default function DrAara() {
         <section className="aara-faq">
           <div className="container">
             <div className="aara-faq__inner reveal">
-              <span className="tag tag--clinical">Questions about Aara</span>
+              <span className="tag tag--clinical">FAQ</span>
               <h2>The four questions people ask first.</h2>
-              <dl className="aara-faq__list">
-                <dt>What is Dr. Aara?</dt>
-                <dd>
-                  An AI avatar you can see and talk to. Scan the QR on the loaf, her face shows up
-                  on your phone, you talk to her like a video call.
-                </dd>
+              <div className="aara-faq__accordion">
+                <details className="aara-faq__item">
+                  <summary>What is Dr. Aara?</summary>
+                  <p>
+                    An AI avatar you can see and talk to. Scan the QR on the loaf, her face shows up
+                    on your phone, you talk to her like a video call.
+                  </p>
+                </details>
 
-                <dt>What languages does she speak?</dt>
-                <dd>
-                  Hindi, English, Tamil, Bengali, Marathi, Telugu — and the way you actually mix
-                  them.
-                </dd>
+                <details className="aara-faq__item">
+                  <summary>What languages does she speak?</summary>
+                  <p>
+                    Hindi, English, Tamil, Bengali, Marathi, Telugu — and the way you actually mix
+                    them.
+                  </p>
+                </details>
 
-                <dt>Is Dr. Aara a doctor?</dt>
-                <dd>
-                  No. She is an AI trained for nutrition and food conversations, not a physician.
-                  For prescriptions and personal medical decisions, talk to a human one.
-                </dd>
+                <details className="aara-faq__item">
+                  <summary>Is Dr. Aara a doctor?</summary>
+                  <p>
+                    No. She is an AI trained for nutrition and food conversations, not a physician.
+                    For prescriptions and personal medical decisions, talk to a human one.
+                  </p>
+                </details>
 
-                <dt>How much does Dr. Aara cost?</dt>
-                <dd>
-                  She comes with the loaf. No subscription. No app to download. The QR is on every
-                  pack.
-                </dd>
-              </dl>
+                <details className="aara-faq__item">
+                  <summary>How much does Dr. Aara cost?</summary>
+                  <p>
+                    She comes with the loaf. No subscription. No app to download. The QR is on every
+                    pack.
+                  </p>
+                </details>
+              </div>
             </div>
           </div>
         </section>

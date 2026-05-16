@@ -117,11 +117,36 @@ const CALL_CAPTIONS = [
   "The Daily White is hitting its stride for you. We could try the chia next.",
 ]
 
-// Middle slot is a video (the HeyGen clip, silent loop) — gives the gallery motion + asset variety.
+// Middle slot is the Higgsfield video (silent loop). Outer two slots are HeyGen Talking-Photo looks.
 const AARA_PORTRAITS = [
-  { type: 'image', src: '/img/aara-portrait.webp', caption: 'Morning brief' },
+  { type: 'image', src: '/img/aara-looks/stethoscope-1.webp', caption: 'Morning brief' },
   { type: 'video', src: '/aara-clip.mp4', caption: 'In session' },
-  { type: 'image', src: '/img/aara-portrait-3.webp', caption: 'After-meal review' },
+  { type: 'image', src: '/img/aara-looks/matcha-2.webp', caption: 'After-meal review' },
+]
+
+// "Aara, in many rooms" carousel — full set of looks + content reels under the CTA.
+// Videos use poster + native controls (no autoplay — keeps the page light).
+const AARA_CAROUSEL = [
+  { type: 'image', src: '/img/aara-looks/stethoscope-1.webp', label: 'On call' },
+  { type: 'image', src: '/img/aara-looks/matcha-2.webp', label: 'Between meetings' },
+  {
+    type: 'video',
+    src: '/video/aara-walk-after-meals.mp4',
+    poster: '/video/aara-walk-poster.jpg',
+    label: 'Walking after meals',
+    duration: '37s',
+  },
+  { type: 'image', src: '/img/aara-looks/podcaster.webp', label: 'Recording the brief' },
+  { type: 'image', src: '/img/aara-looks/matcha-1.webp', label: 'Slow morning' },
+  {
+    type: 'video',
+    src: '/video/aara-intro-portrait.mp4',
+    poster: '/video/aara-intro-poster.jpg',
+    label: 'A quick hello',
+    duration: '19s',
+  },
+  { type: 'image', src: '/img/aara-looks/stethoscope-2.webp', label: 'Between patients' },
+  { type: 'image', src: '/img/aara-looks/stethoscope-3.webp', label: 'Reading the chart' },
 ]
 
 const features = [
@@ -426,6 +451,45 @@ export default function DrAara() {
                     pack.
                   </p>
                 </details>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ "In many rooms" carousel — looks + content reels ============ */}
+        <section className="aara-looks">
+          <div className="container">
+            <div className="aara-looks__header reveal">
+              <span className="tag tag--clinical">In many rooms</span>
+              <h2>Aara, across her week.</h2>
+              <p>Same Aara. Different rooms, different conversations. Two are short reels — tap to play.</p>
+            </div>
+            <div className="aara-looks__track-wrap reveal">
+              <div className="aara-looks__track">
+                {AARA_CAROUSEL.map((item, i) => (
+                  <figure
+                    key={item.src}
+                    className={`aara-looks__card ${item.type === 'video' ? 'aara-looks__card--video' : ''}`}
+                    style={{ transitionDelay: `${i * 60}ms` }}
+                  >
+                    {item.type === 'video' ? (
+                      <video
+                        src={item.src}
+                        poster={item.poster}
+                        controls
+                        preload="none"
+                        playsInline
+                        aria-label={`Dr. Aara — ${item.label}`}
+                      />
+                    ) : (
+                      <img src={item.src} alt={`Dr. Aara — ${item.label}`} loading="lazy" />
+                    )}
+                    <figcaption>
+                      <span>{item.label}</span>
+                      {item.duration && <span className="aara-looks__dur">{item.duration}</span>}
+                    </figcaption>
+                  </figure>
+                ))}
               </div>
             </div>
           </div>

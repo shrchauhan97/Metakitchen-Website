@@ -1,13 +1,61 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Mic, Brain, TrendingUp, ShieldCheck } from 'lucide-react'
-import { Helmet } from 'react-helmet-async'
 import Button from '../../components/Button/Button.jsx'
 import CaptionLoop from '../../components/CaptionLoop/CaptionLoop.jsx'
 import AaraChatSim from '../../components/AaraChatSim/AaraChatSim.jsx'
+import SeoHead from '../../components/SeoHead/SeoHead.jsx'
 import '../../components/AaraChatSim/AaraChatSim.css'
-import { AARA, SEO } from '../../data/content.js'
+import { AARA } from '../../data/content.js'
 import './DrAara.css'
+
+const FAQ_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is Dr. Aara?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'An AI avatar you can see and talk to. Scan the QR on the loaf, her face shows up on your phone, you talk to her like a video call.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What languages does she speak?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Hindi, English, Tamil, Bengali, Marathi, Telugu — and the way you actually mix them.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is Dr. Aara a doctor?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. She is an AI trained for nutrition and food conversations, not a physician. For prescriptions and personal medical decisions, talk to a human one.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does Dr. Aara cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'She comes with the loaf. No subscription. No app to download. The QR is on every pack.',
+      },
+    },
+  ],
+}
+
+const BREADCRUMB_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://metakitchen.io/' },
+    { '@type': 'ListItem', position: 2, name: 'Dr. Aara', item: 'https://metakitchen.io/dr-aara' },
+  ],
+}
 
 const HERO_CAPTIONS = [
   "Hi, I'm Dr. Aara.",
@@ -72,10 +120,10 @@ export default function DrAara() {
 
   return (
     <>
-      <Helmet>
-        <title>{SEO['/dr-aara'].title}</title>
-        <meta name="description" content={SEO['/dr-aara'].description} />
-      </Helmet>
+      <SeoHead route="/dr-aara">
+        <script type="application/ld+json">{JSON.stringify(FAQ_LD)}</script>
+        <script type="application/ld+json">{JSON.stringify(BREADCRUMB_LD)}</script>
+      </SeoHead>
 
       <motion.div
         className="page-wrapper"
@@ -106,7 +154,9 @@ export default function DrAara() {
                     loop
                     muted
                     playsInline
+                    preload="metadata"
                     poster="/img/aara-portrait.jpg"
+                    aria-label="Dr. Aara — multilingual AI nutrition avatar, video portrait"
                   />
                   <CaptionLoop lines={HERO_CAPTIONS} intervalMs={3200} />
                 </div>
@@ -182,7 +232,15 @@ export default function DrAara() {
                   style={{ transitionDelay: `${i * 120}ms` }}
                 >
                   {p.type === 'video' ? (
-                    <video src={p.src} autoPlay loop muted playsInline />
+                    <video
+                      src={p.src}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
+                      aria-label={`Dr. Aara — ${p.caption}`}
+                    />
                   ) : (
                     <img src={p.src} alt={`Dr. Aara — ${p.caption}`} loading="lazy" />
                   )}
@@ -291,6 +349,41 @@ export default function DrAara() {
                 <h3>Not a wrapper on a generic model.</h3>
                 <p>Her conversation engine, her voice, her memory — all in-house.</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ FAQ — visible Q&A pairs, mirroring FAQPage JSON-LD ============ */}
+        <section className="aara-faq">
+          <div className="container">
+            <div className="aara-faq__inner reveal">
+              <span className="tag tag--clinical">Questions about Aara</span>
+              <h2>The four questions people ask first.</h2>
+              <dl className="aara-faq__list">
+                <dt>What is Dr. Aara?</dt>
+                <dd>
+                  An AI avatar you can see and talk to. Scan the QR on the loaf, her face shows up
+                  on your phone, you talk to her like a video call.
+                </dd>
+
+                <dt>What languages does she speak?</dt>
+                <dd>
+                  Hindi, English, Tamil, Bengali, Marathi, Telugu — and the way you actually mix
+                  them.
+                </dd>
+
+                <dt>Is Dr. Aara a doctor?</dt>
+                <dd>
+                  No. She is an AI trained for nutrition and food conversations, not a physician.
+                  For prescriptions and personal medical decisions, talk to a human one.
+                </dd>
+
+                <dt>How much does Dr. Aara cost?</dt>
+                <dd>
+                  She comes with the loaf. No subscription. No app to download. The QR is on every
+                  pack.
+                </dd>
+              </dl>
             </div>
           </div>
         </section>

@@ -135,3 +135,37 @@
   .sci-timeline__item { grid-template-columns: 1fr; gap: 0.5rem; }
   .science-cta__inner { flex-direction: column; align-items: flex-start; }
 }
+
+/* Q&A list — matches FAQPage JSON-LD verbatim, on-page visible pair */
+.science-citations__qa {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.science-citations__qa dt {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--pumpernickel);
+  margin: 0 0 0.4rem;
+  line-height: 1.35;
+}
+.science-citations__qa dd {
+  margin: 0;
+  padding-left: 0;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--roasted-bran);
+}
+.science-citations__context {
+  margin-top: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(58, 74, 79, 0.08);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--roasted-bran);
+}

@@ -180,33 +180,56 @@ export const SEO = {
     title: 'MetaKitchen — The bread you already eat. Behaves differently.',
     description:
       'A chef-led loaf, lab-tested at GI 38. The Daily White is the flagship. The line follows.',
+    canonical: 'https://metakitchen.io/',
+    ogImage: 'https://metakitchen.io/og-cover.png',
+    ogImageAlt: 'MetaKitchen — The Daily White, lab-tested at GI 38',
   },
   '/our-bread': {
-    title: 'Our Bread — MetaKitchen',
+    title: 'The Daily White — Low-GI Indian Bread, Lab-Tested at GI 38 | MetaKitchen',
     description:
-      'The Daily White, lab-tested at GI 38. A staple upgrade, built like a chef would build it. One loaf, then a kitchen.',
+      'A staple upgrade, built like a chef would build it. Lab-tested at GI 38 — below the FSSAI low-GI threshold of 55. No maida, no added sugar, no preservatives.',
+    canonical: 'https://metakitchen.io/our-bread',
+    ogImage: 'https://metakitchen.io/og-cover.png',
+    ogImageAlt: 'The Daily White — MetaKitchen low-GI bread',
   },
   '/dr-aara': {
-    title: 'Dr. Aara — MetaKitchen',
+    title: 'Dr. Aara — Multilingual AI Nutrition Avatar | MetaKitchen',
     description:
-      "An AI avatar you can see and talk to. Scan the QR, her face shows up, you start talking. Built on our own conversation engine.",
+      'An AI avatar you can see and talk to in Hindi, English, Tamil, Bengali, Marathi, Telugu. Scan the QR on the loaf, start a conversation. Built on our own engine.',
+    canonical: 'https://metakitchen.io/dr-aara',
+    ogImage: 'https://metakitchen.io/og-cover.png',
+    ogImageAlt: 'Dr. Aara — MetaKitchen multilingual AI nutrition avatar',
   },
   '/science': {
-    title: 'How we test — MetaKitchen',
+    title: 'How We Tested the Daily White — Predictive GI Protocol | MetaKitchen',
     description:
-      'One loaf. One lab. One number. The Daily White, predictive GI protocol, accredited Indian lab. The number came back at 38.',
+      'One loaf. One lab. One number. The Daily White, predictive GI protocol at an accredited Indian lab. The number came back at 38.',
+    canonical: 'https://metakitchen.io/science',
+    ogImage: 'https://metakitchen.io/og-cover.png',
+    ogImageAlt: 'How we tested the Daily White at GI 38',
   },
   '/story': {
-    title: 'The Story — MetaKitchen',
+    title: 'The Story — A Chef-led Low-GI Bread for India | MetaKitchen',
     description:
-      "A chef's thesis on what bread should be. Built four versions. The last one made it past the people eating it every morning.",
+      "237 million Indians have diabetes or pre-diabetes. Most eat bread every morning. The Daily White is a chef's thesis on what that bread should be.",
+    canonical: 'https://metakitchen.io/story',
+    ogImage: 'https://metakitchen.io/og-cover.png',
+    ogImageAlt: 'MetaKitchen — a chef-led low-GI bread for India',
   },
   '/privacy': {
     title: 'Privacy — MetaKitchen',
     description: 'How we handle your data.',
+    canonical: 'https://metakitchen.io/privacy',
+    ogImage: 'https://metakitchen.io/og-cover.png',
+    ogImageAlt: 'MetaKitchen privacy policy',
+    noindex: true,
   },
   '/terms': {
     title: 'Terms — MetaKitchen',
     description: 'Terms of use for metakitchen.io.',
+    canonical: 'https://metakitchen.io/terms',
+    ogImage: 'https://metakitchen.io/og-cover.png',
+    ogImageAlt: 'MetaKitchen terms of use',
+    noindex: true,
   },
 }

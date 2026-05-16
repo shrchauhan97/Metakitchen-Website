@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Helmet } from 'react-helmet-async'
 import {
   ArrowRight,
   Zap,
@@ -19,7 +18,8 @@ import Button from '../../components/Button/Button.jsx'
 import WaitlistForm from '../../components/WaitlistForm/WaitlistForm.jsx'
 import HeroShaderBackdrop from '../../components/HeroShaderBackdrop/HeroShaderBackdrop.jsx'
 import GICounter from '../../components/GICounter/GICounter.jsx'
-import { BRAND, PROOF, SEO, AARA } from '../../data/content.js'
+import SeoHead from '../../components/SeoHead/SeoHead.jsx'
+import { BRAND, PROOF, AARA } from '../../data/content.js'
 import './Home.css'
 
 const FADE = {
@@ -74,10 +74,7 @@ export default function Home() {
 
   return (
     <>
-      <Helmet>
-        <title>{SEO['/'].title}</title>
-        <meta name="description" content={SEO['/'].description} />
-      </Helmet>
+      <SeoHead route="/" />
 
       <motion.div
         className="page-wrapper"
@@ -187,7 +184,9 @@ export default function Home() {
               loop
               muted
               playsInline
-              poster="/img/bread-crosssection.png"
+              preload="metadata"
+              poster="/img/bread-crosssection.webp"
+              aria-label="MetaKitchen bread, slow-fermented multigrain loaf, in close-up"
             />
             <div className="hero__visual-mask" aria-hidden="true" />
           </motion.div>
@@ -295,6 +294,8 @@ export default function Home() {
                 loop
                 muted
                 playsInline
+                preload="metadata"
+                aria-label="Dr. Aara — multilingual AI nutrition avatar in conversation"
               />
             </div>
           </div>

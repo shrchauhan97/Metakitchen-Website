@@ -3,10 +3,66 @@ import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Helmet } from 'react-helmet-async'
 import Button from '../../components/Button/Button.jsx'
-import { PROOF, SEO, BRAND } from '../../data/content.js'
+import SeoHead from '../../components/SeoHead/SeoHead.jsx'
+import { PROOF, BRAND } from '../../data/content.js'
 import './Science.css'
+
+const FAQ_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the glycemic index of MetaKitchen bread?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "The Daily White, MetaKitchen's flagship loaf, is lab-tested at GI 38 — below the FSSAI low-GI threshold of 55. White bread sits at 70.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How was the glycemic index measured?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The standard predictive Glycemic Index protocol at an accredited Indian lab, using the Goñi et al. regression — the methodology used by the FAO and food research bodies worldwide.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does this compare to regular bread?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "White bread sits around GI 70. Most 'healthy multigrain' loaves on Indian shelves land between 55 and 70. Watermelon is 76. An apple is 36. Lentils are around 30. The Daily White came back at 38.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is this bread safe for diabetics?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "It is bread that has been lab-tested for its glycemic index — useful for blood-sugar-aware eating, not a treatment. For diabetics on medication, your physician's guidance is what matters.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where is MetaKitchen bread made?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Made in India, by chefs from the country’s most senior kitchens. The line starts with the Daily White, with chia ciabatta, sourdough variants, and jalapeño cheese to follow.',
+      },
+    },
+  ],
+}
+
+const BREADCRUMB_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://metakitchen.io/' },
+    { '@type': 'ListItem', position: 2, name: 'Science', item: 'https://metakitchen.io/science' },
+  ],
+}
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -60,10 +116,10 @@ export default function Science() {
 
   return (
     <>
-      <Helmet>
-        <title>{SEO['/science'].title}</title>
-        <meta name="description" content={SEO['/science'].description} />
-      </Helmet>
+      <SeoHead route="/science">
+        <script type="application/ld+json">{JSON.stringify(FAQ_LD)}</script>
+        <script type="application/ld+json">{JSON.stringify(BREADCRUMB_LD)}</script>
+      </SeoHead>
       <motion.div
         className="page-wrapper"
         initial={{ opacity: 0 }}
@@ -234,35 +290,49 @@ export default function Science() {
         <section className="science-citations">
           <div className="container">
             <div className="science-citations__inner reveal">
-              <h3>What the lab does, and what it means</h3>
-              <ol className="science-citations__list">
-                <li>
-                  <strong>The test.</strong> A predictive Glycemic Index test runs the food
-                  through a controlled laboratory model of digestion and measures how fast it
-                  releases glucose. The result is converted into a GI value via the Goñi et al.
-                  regression — a methodology used by the FAO and food research bodies worldwide.
-                </li>
-                <li>
-                  <strong>The scale.</strong> Foods below GI 55 are "low." Between 55 and 70 is
-                  "medium." Above 70 is "high." White bread sits around 70. Watermelon is 76. An
-                  apple is 36. Lentils are around 30. The Daily White came back at {PROOF.gi}.
-                </li>
-                <li>
-                  <strong>Honest about edges.</strong> This is bread that has been lab-tested for
-                  its glycemic index. Useful for blood-sugar-aware eating; not a treatment. For
-                  diabetics on medication, your physician's guidance is what matters.
-                </li>
-                <li>
-                  <strong>The rest of the line.</strong> Chia Ciabatta, sourdough variants,
-                  jalapeño cheese — and what follows bread — all go through the same protocol
-                  before they sit on a shelf.
-                </li>
-                <li>
-                  <strong>The context.</strong> India has roughly 237M people with diabetes or
-                  pre-diabetes (ICMR-INDIAB, Lancet 2023). 76.6% of diagnosed diabetics have poor
-                  glycemic control despite medication (TIGHT Study, BMJ 2019).
-                </li>
-              </ol>
+              <h3>What the lab does, and what it means.</h3>
+              <dl className="science-citations__qa">
+                <dt>What is the glycemic index of MetaKitchen bread?</dt>
+                <dd>
+                  The Daily White, MetaKitchen's flagship loaf, is lab-tested at GI {PROOF.gi} —
+                  below the FSSAI low-GI threshold of 55. White bread sits at 70.
+                </dd>
+
+                <dt>How was the glycemic index measured?</dt>
+                <dd>
+                  The standard predictive Glycemic Index protocol at an accredited Indian lab,
+                  using the Goñi et al. regression — the methodology used by the FAO and food
+                  research bodies worldwide.
+                </dd>
+
+                <dt>How does this compare to regular bread?</dt>
+                <dd>
+                  White bread sits around GI 70. Most "healthy multigrain" loaves on Indian shelves
+                  land between 55 and 70. Watermelon is 76. An apple is 36. Lentils are around 30.
+                  The Daily White came back at {PROOF.gi}.
+                </dd>
+
+                <dt>Is this bread safe for diabetics?</dt>
+                <dd>
+                  It is bread that has been lab-tested for its glycemic index — useful for
+                  blood-sugar-aware eating, not a treatment. For diabetics on medication, your
+                  physician's guidance is what matters.
+                </dd>
+
+                <dt>Where is MetaKitchen bread made?</dt>
+                <dd>
+                  Made in India, by chefs from the country's most senior kitchens. The line starts
+                  with the Daily White, with chia ciabatta, sourdough variants, and jalapeño
+                  cheese to follow.
+                </dd>
+              </dl>
+
+              <p className="science-citations__context">
+                India context: roughly 237M people with diabetes or pre-diabetes (ICMR-INDIAB,
+                Lancet 2023). 76.6% of diagnosed diabetics have poor glycemic control despite
+                medication (TIGHT Study, BMJ 2019).
+              </p>
+
               <p className="science-citations__note">
                 Want the lab report? Email{' '}
                 <a href={`mailto:${BRAND.email}?subject=MetaKitchen%20Lab%20Report`}>

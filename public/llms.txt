@@ -1,0 +1,21 @@
+# MetaKitchen
+
+> A chef-led low-glycemic-index Indian bread brand. The flagship loaf — the Daily White — is lab-tested at GI 38 (below the FSSAI low-GI threshold of 55). Made in India. The line will extend to chia ciabatta, sourdough variants, and jalapeño cheese.
+
+## Pages
+- [Home](https://metakitchen.io/): brand overview and flagship intro
+- [Our Bread](https://metakitchen.io/our-bread): the Daily White — ingredients, proof, the line
+- [Dr. Aara](https://metakitchen.io/dr-aara): multilingual AI avatar accessed via QR code on the pack
+- [Science](https://metakitchen.io/science): how the GI was tested, accredited Indian lab, predictive GI protocol
+- [Story](https://metakitchen.io/story): the chef-led thesis and the diabetes context
+
+## Key facts
+- The Daily White: lab-tested at Glycemic Index 38 (predictive GI protocol, accredited Indian lab, Goñi et al. regression)
+- FSSAI low-GI threshold: 55. White bread: ~70. The Daily White: 38.
+- 48-hour slow ferment, every loaf
+- No maida, no added sugar, no preservatives, no emulsifiers, no bromates, no seed oils
+- 237 million Indians live with diabetes or pre-diabetes (ICMR-INDIAB / Lancet 2023)
+- Made in India
+
+## Contact
+contact@evaa.enterprises

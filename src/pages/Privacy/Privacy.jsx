@@ -1,15 +1,11 @@
 import { motion } from 'framer-motion'
-import { Helmet } from 'react-helmet-async'
-import { SEO } from '../../data/content.js'
+import SeoHead from '../../components/SeoHead/SeoHead.jsx'
 import './Privacy.css'
 
 export default function Privacy() {
   return (
     <>
-      <Helmet>
-        <title>{SEO['/privacy'].title}</title>
-        <meta name="description" content={SEO['/privacy'].description} />
-      </Helmet>
+      <SeoHead route="/privacy" />
       <motion.main
         className="legal-page"
         initial={{ opacity: 0 }}

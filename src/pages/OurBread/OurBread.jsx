@@ -4,12 +4,82 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Check, Wheat, Droplet, Leaf, Sprout, Flame, Clock } from 'lucide-react'
-import { Helmet } from 'react-helmet-async'
 import Button from '../../components/Button/Button.jsx'
 import WaitlistForm from '../../components/WaitlistForm/WaitlistForm.jsx'
 import GICounter from '../../components/GICounter/GICounter.jsx'
-import { PROOF, INGREDIENTS, VALUES, SEO } from '../../data/content.js'
+import SeoHead from '../../components/SeoHead/SeoHead.jsx'
+import { PROOF, INGREDIENTS, VALUES } from '../../data/content.js'
 import './OurBread.css'
+
+const PRODUCT_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'The Daily White',
+  brand: { '@type': 'Brand', name: 'MetaKitchen' },
+  category: 'Bread / Low-GI Bread',
+  description:
+    'A chef-led, stone-ground, slow-fermented multigrain loaf. Lab-tested at Glycemic Index 38 — below the FSSAI low-GI threshold of 55. No maida, no added sugar, no preservatives, no seed oils.',
+  image: 'https://metakitchen.io/img/hero-loaf.webp',
+  countryOfOrigin: 'IN',
+  additionalProperty: [
+    {
+      '@type': 'PropertyValue',
+      name: 'Glycemic Index (lab-tested)',
+      value: 38,
+      description: 'Predictive GI protocol, accredited Indian lab, Goñi et al. regression',
+    },
+    { '@type': 'PropertyValue', name: 'FSSAI low-GI threshold', value: 55 },
+    { '@type': 'PropertyValue', name: 'Fermentation time', value: '48 hours' },
+    { '@type': 'PropertyValue', name: 'Added sugar', value: '0g' },
+  ],
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/PreOrder',
+    url: 'https://metakitchen.io/our-bread#waitlist',
+    priceCurrency: 'INR',
+    seller: { '@type': 'Organization', name: 'MetaKitchen' },
+  },
+}
+
+const FAQ_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is in MetaKitchen bread?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Whole grains, stone-ground; cultured fats; salt. No maida, no added sugar, no preservatives, no emulsifiers, no bromates, no seed oils.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the glycemic index of MetaKitchen bread?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "The Daily White, MetaKitchen's flagship loaf, is lab-tested at GI 38 — below the FSSAI low-GI threshold of 55. White bread sits at 70.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does it last?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Five days on the counter. No preservatives, no plastic-wrap tricks.',
+      },
+    },
+  ],
+}
+
+const BREADCRUMB_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://metakitchen.io/' },
+    { '@type': 'ListItem', position: 2, name: 'Our Bread', item: 'https://metakitchen.io/our-bread' },
+  ],
+}
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -82,10 +152,11 @@ export default function OurBread() {
 
   return (
     <>
-      <Helmet>
-        <title>{SEO['/our-bread'].title}</title>
-        <meta name="description" content={SEO['/our-bread'].description} />
-      </Helmet>
+      <SeoHead route="/our-bread">
+        <script type="application/ld+json">{JSON.stringify(PRODUCT_LD)}</script>
+        <script type="application/ld+json">{JSON.stringify(FAQ_LD)}</script>
+        <script type="application/ld+json">{JSON.stringify(BREADCRUMB_LD)}</script>
+      </SeoHead>
 
       <motion.div
         className="page-wrapper"
@@ -114,6 +185,14 @@ export default function OurBread() {
                 A staple upgrade.<br />
                 <span className="bread-hero__accent">Built like a chef would build it.</span>
               </motion.h1>
+              <motion.p
+                className="bread-hero__lede"
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.15 }}
+              >
+                A low-GI Indian bread, lab-tested at GI {PROOF.gi}.
+              </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -460,6 +539,30 @@ export default function OurBread() {
                   <p>{v.body}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============ FAQ — visible Q&A, paired with FAQPage JSON-LD ============ */}
+        <section className="bread-faq">
+          <div className="container">
+            <div className="bread-faq__inner reveal">
+              <span className="tag">Questions, answered straight</span>
+              <h2>What people ask about the bread.</h2>
+              <dl className="bread-faq__list">
+                <dt>What is in MetaKitchen bread?</dt>
+                <dd>
+                  Whole grains, stone-ground; cultured fats; salt. No maida, no added sugar,
+                  no preservatives, no emulsifiers, no bromates, no seed oils.
+                </dd>
+                <dt>What is the glycemic index of MetaKitchen bread?</dt>
+                <dd>
+                  The Daily White, MetaKitchen's flagship loaf, is lab-tested at GI {PROOF.gi} —
+                  below the FSSAI low-GI threshold of 55. White bread sits at 70.
+                </dd>
+                <dt>How long does it last?</dt>
+                <dd>Five days on the counter. No preservatives, no plastic-wrap tricks.</dd>
+              </dl>
             </div>
           </div>
         </section>

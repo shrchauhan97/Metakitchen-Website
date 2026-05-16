@@ -1,11 +1,20 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Helmet } from 'react-helmet-async'
 import { Users, AlertTriangle, TrendingDown, Clock } from 'lucide-react'
 import Button from '../../components/Button/Button.jsx'
 import CountUp from '../../components/CountUp/CountUp.jsx'
-import { VALUES, BRAND, SEO, PROOF } from '../../data/content.js'
+import SeoHead from '../../components/SeoHead/SeoHead.jsx'
+import { VALUES, BRAND, PROOF } from '../../data/content.js'
 import './Story.css'
+
+const BREADCRUMB_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://metakitchen.io/' },
+    { '@type': 'ListItem', position: 2, name: 'Story', item: 'https://metakitchen.io/story' },
+  ],
+}
 
 const STATS = [
   { num: '237M', label: 'Indians with diabetes or pre-diabetes', icon: <Users size={18} /> },
@@ -29,10 +38,9 @@ export default function Story() {
 
   return (
     <>
-      <Helmet>
-        <title>{SEO['/story'].title}</title>
-        <meta name="description" content={SEO['/story'].description} />
-      </Helmet>
+      <SeoHead route="/story">
+        <script type="application/ld+json">{JSON.stringify(BREADCRUMB_LD)}</script>
+      </SeoHead>
       <motion.div
         className="page-wrapper"
         initial={{ opacity: 0 }}

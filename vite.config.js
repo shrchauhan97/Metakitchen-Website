@@ -12,6 +12,23 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // the `/` route output because of a bundle-key collision with index.html.
 let capturedRoot = null
 
+// On Vercel's Amazon Linux 2 build image, puppeteer's bundled Chromium fails
+// to launch because libnspr4.so/libnss3.so aren't installed system-wide. We
+// fall back to @sparticuz/chromium (which bundles every shared lib it needs)
+// when the env signals serverless/CI, and let local dev use whatever puppeteer
+// supplies. Toggle with VERCEL=1 (set automatically in Vercel build envs).
+async function resolveChromium() {
+  if (!process.env.VERCEL && !process.env.CI && !process.env.USE_SPARTICUZ) return null
+  const { default: chromium } = await import('@sparticuz/chromium')
+  return {
+    executablePath: await chromium.executablePath(),
+    args: chromium.args,
+    headless: chromium.headless,
+  }
+}
+
+const chromiumOverride = await resolveChromium()
+
 export default defineConfig({
   plugins: [
     react(),
@@ -31,6 +48,12 @@ export default defineConfig({
         maxConcurrentRoutes: 2,
         headless: true,
         viewport: { width: 1280, height: 800 },
+        ...(chromiumOverride
+          ? {
+              executablePath: chromiumOverride.executablePath,
+              args: chromiumOverride.args,
+            }
+          : {}),
       },
       postProcess(renderedRoute) {
         renderedRoute.route = renderedRoute.originalRoute
